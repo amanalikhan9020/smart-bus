@@ -1,1 +1,1604 @@
 Add smart bus website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Astana Smart Bus</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e8ef;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #2457d6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #6d7688;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #2457d6;
+        }
+
+        .hero {
+            padding: 55px 7% 45px;
+            background: linear-gradient(135deg, #f7faff, #edf2ff);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: #e8efff;
+            color: #2457d6;
+            padding: 8px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            max-width: 760px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #2457d6;
+        }
+
+        .hero p {
+            max-width: 680px;
+            color: #687386;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: 1450px;
+            margin: auto;
+            padding: 35px 7% 70px;
+        }
+
+        .section-title {
+            margin-bottom: 22px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .section-title p {
+            color: #7c8597;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 25px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-size: 11px;
+            color: #7a8495;
+            font-weight: 700;
+        }
+
+        select,
+        input {
+            border: 1px solid #dce1e9;
+            background: #fafbfc;
+            padding: 13px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #2457d6;
+        }
+
+        .predict-btn {
+            border: none;
+            background: #2457d6;
+            color: white;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 19px;
+        }
+
+        .predict-btn:hover {
+            background: #1948bd;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e8ef;
+            border-radius: 16px;
+            padding: 21px;
+        }
+
+        .stat-title {
+            color: #7e8798;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-desc {
+            font-size: 11px;
+            color: #929aa8;
+            margin-top: 6px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 22px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .panel-header h3 {
+            font-size: 18px;
+        }
+
+        .panel-time {
+            font-size: 12px;
+            color: #8a93a4;
+        }
+
+        .stop {
+            display: grid;
+            grid-template-columns: 30px 1fr 135px 90px;
+            gap: 12px;
+            align-items: center;
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .stop:last-child {
+            padding-bottom: 0;
+        }
+
+        .line {
+            position: absolute;
+            left: 12px;
+            top: 18px;
+            width: 2px;
+            height: 100%;
+            background: #dfe4ec;
+        }
+
+        .stop:last-child .line {
+            display: none;
+        }
+
+        .dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: white;
+            border: 5px solid #2457d6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hotspot .dot {
+            border-color: #f19432;
+        }
+
+        .stop-info h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .stop-info p {
+            font-size: 11px;
+            color: #9098a7;
+        }
+
+        .occupancy-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .bar-bg {
+            height: 7px;
+            background: #edf0f4;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .bar-low {
+            background: #42a579;
+        }
+
+        .bar-medium {
+            background: #f1b444;
+        }
+
+        .bar-high {
+            background: #ee6262;
+        }
+
+        .status {
+            padding: 6px 9px;
+            border-radius: 100px;
+            font-size: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .status-low {
+            background: #e6f7ef;
+            color: #267b59;
+        }
+
+        .status-medium {
+            background: #fff5da;
+            color: #976b13;
+        }
+
+        .status-high {
+            background: #ffe4e4;
+            color: #b24040;
+        }
+
+        .recommendation {
+            background: #f5f8ff;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .recommendation small {
+            color: #70809a;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .recommendation h3 {
+            margin: 8px 0 9px;
+        }
+
+        .recommendation p {
+            color: #687487;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .bus-box {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 30px;
+        }
+
+        .bus {
+            width: 190px;
+            height: 290px;
+            border: 4px solid #24304a;
+            border-radius: 30px 30px 16px 16px;
+            padding: 18px;
+            background: #f8f9fb;
+        }
+
+        .bus-window {
+            height: 50px;
+            background: #d1e1ff;
+            border-radius: 18px 18px 7px 7px;
+            margin-bottom: 16px;
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 9px;
+        }
+
+        .seat {
+            width: 26px;
+            height: 25px;
+            background: #dfe4ed;
+            border-radius: 7px 7px 4px 4px;
+        }
+
+        .seat.occupied {
+            background: #2457d6;
+        }
+
+        .chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 220px;
+            border-bottom: 1px solid #dfe4ec;
+        }
+
+        .chart-column {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .chart-bar {
+            width: 100%;
+            min-height: 5px;
+            background: #2457d6;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .legend {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #7a8495;
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .green {
+            background: #42a579;
+        }
+
+        .yellow {
+            background: #f1b444;
+        }
+
+        .red {
+            background: #ee6262;
+        }
+
+        .how {
+            margin-top: 50px;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .how-card {
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .how-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #e9efff;
+            color: #2457d6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .how-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .how-card p {
+            font-size: 13px;
+            color: #7b8494;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #172033;
+            color: #c9ced8;
+            text-align: center;
+            padding: 28px;
+            font-size: 12px;
+        }
+
+        @media(max-width: 1000px) {
+            .controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 650px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .controls,
+            .stats,
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stop {
+                grid-template-columns: 28px 1fr;
+            }
+
+            .occupancy-box,
+            .status {
+                grid-column: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">🚌</div>
+        <div>Astana Smart Bus</div>
+    </div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#prediction">Prediction</a>
+        <a href="#how">How it works</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-tag">
+        AI-BASED TRANSPORT SYSTEM
+    </div>
+
+    <h1>
+        Predict bus occupancy
+        <span>before it arrives.</span>
+    </h1>
+
+    <p>
+        Our AI system analyses historical passenger patterns,
+        time of day, route direction and transport hotspots
+        to estimate bus occupancy across Astana.
+    </p>
+</section>
+
+<main id="dashboard">
+
+    <div class="section-title">
+        <h2>Bus Occupancy Prediction</h2>
+
+        <p>
+            Select the bus route, direction and time to view
+            predicted passenger load.
+        </p>
+    </div>
+
+    <section class="controls">
+
+        <div class="control-group">
+            <label>BUS ROUTE</label>
+
+            <select id="routeSelect">
+                <option value="26">Bus 26</option>
+                <option value="10">Bus 10</option>
+                <option value="12">Bus 12</option>
+                <option value="40">Bus 40</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>DIRECTION</label>
+
+            <select id="directionSelect">
+                <option value="forward">City → Expo</option>
+                <option value="reverse">Expo → City</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>TIME</label>
+
+            <input
+                id="timeInput"
+                type="time"
+                value="08:30"
+            >
+        </div>
+
+        <button
+            class="predict-btn"
+            onclick="updatePrediction()"
+        >
+            Predict Occupancy
+        </button>
+
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <div class="stat-title">
+                Average occupancy
+            </div>
+
+            <div
+                class="stat-value"
+                id="averageOccupancy"
+            >
+                68%
+            </div>
+
+            <div class="stat-desc">
+                Across selected route
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">
+                Peak occupancy
+            </div>
+
+            <div
+                class="stat-value"
+                id="peakOccupancy"
+            >
+                91%
+            </div>
+
+            <div class="stat-desc">
+                Highest predicted load
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">
+                Passenger capacity
+            </div>
+
+            <div class="stat-value">
+                100
+            </div>
+
+            <div class="stat-desc">
+                Approximate total capacity
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">
+                Traffic period
+            </div>
+
+            <div
+                class="stat-value"
+                id="peakPeriod"
+            >
+                Morning
+            </div>
+
+            <div class="stat-desc">
+                Based on selected time
+            </div>
+        </div>
+
+    </section>
+
+    <div class="dashboard">
+
+        <section
+            class="panel"
+            id="prediction"
+        >
+
+            <div class="panel-header">
+                <h3>Route Prediction</h3>
+
+                <div
+                    class="panel-time"
+                    id="predictionTime"
+                >
+                    08:30
+                </div>
+            </div>
+
+            <div id="routeContainer"></div>
+
+            <div class="legend">
+
+                <div class="legend-item">
+                    <div class="legend-dot green"></div>
+                    Low occupancy
+                </div>
+
+                <div class="legend-item">
+                    <div class="legend-dot yellow"></div>
+                    Medium occupancy
+                </div>
+
+                <div class="legend-item">
+                    <div class="legend-dot red"></div>
+                    High occupancy
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="panel">
+
+            <div class="recommendation">
+                <small>AI RECOMMENDATION</small>
+
+                <h3 id="recommendationTitle">
+                    Bus available
+                </h3>
+
+                <p id="recommendationText">
+                    Current predicted occupancy is manageable.
+                    You can board this bus.
+                </p>
+            </div>
+
+            <div class="panel-header">
+                <h3>Estimated passengers</h3>
+            </div>
+
+            <div class="bus-box">
+
+                <div class="bus">
+
+                    <div class="bus-window"></div>
+
+                    <div
+                        class="seats"
+                        id="busSeats"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-header">
+                <h3>Occupancy by stop</h3>
+            </div>
+
+            <div
+                class="chart"
+                id="chart"
+            ></div>
+
+        </section>
+
+    </div>
+
+    <section
+        class="how"
+        id="how"
+    >
+
+        <div class="section-title">
+            <h2>How the system works</h2>
+
+            <p>
+                Combination of historical passenger data
+                and future camera integration.
+            </p>
+        </div>
+
+        <div class="how-grid">
+
+            <div class="how-card">
+                <div class="how-number">1</div>
+
+                <h3>Historical data</h3>
+
+                <p>
+                    Passenger traffic from previous trips is
+                    analysed to identify morning and evening
+                    crowding patterns.
+                </p>
+            </div>
+
+            <div class="how-card">
+                <div class="how-number">2</div>
+
+                <h3>AI prediction</h3>
+
+                <p>
+                    The system combines route, stop,
+                    direction and time data to estimate
+                    expected occupancy.
+                </p>
+            </div>
+
+            <div class="how-card">
+                <div class="how-number">3</div>
+
+                <h3>Camera integration</h3>
+
+                <p>
+                    Bus cameras can later count passengers
+                    automatically and update predictions
+                    using real-time data.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    Astana Smart Bus Occupancy Prediction Prototype
+</footer>
+
+<script>
+
+const routes = {
+
+    26: [
+        {
+            name: "ЖК Багыстан",
+            type: "Residential area"
+        },
+
+        {
+            name: "Средняя школа №108",
+            type: "School zone"
+        },
+
+        {
+            name: "ЖК Отырар",
+            type: "Residential area"
+        },
+
+        {
+            name: "ЖК Jetisu Lepsi",
+            type: "Residential area"
+        },
+
+        {
+            name: "По требованию",
+            type: "Request stop"
+        },
+
+        {
+            name: "Khan Shatyr",
+            type: "Shopping & transport hotspot",
+            hotspot: true
+        },
+
+        {
+            name: "Astana Opera",
+            type: "City centre"
+        },
+
+        {
+            name: "Baiterek",
+            type: "City centre"
+        },
+
+        {
+            name: "Abu Dhabi Plaza",
+            type: "Business district"
+        },
+
+        {
+            name: "Botanical Garden",
+            type: "Public area"
+        },
+
+        {
+            name: "Mega Silk Way",
+            type: "Shopping hotspot",
+            hotspot: true
+        },
+
+        {
+            name: "Expo",
+            type: "Transport hotspot",
+            hotspot: true
+        }
+    ],
+
+    10: [
+        {
+            name: "Railway Station",
+            type: "Transport hub",
+            hotspot: true
+        },
+
+        {
+            name: "Saryarka Avenue",
+            type: "City area"
+        },
+
+        {
+            name: "Republic Avenue",
+            type: "City centre"
+        },
+
+        {
+            name: "Congress Hall",
+            type: "Public area"
+        },
+
+        {
+            name: "Baiterek",
+            type: "City centre"
+        },
+
+        {
+            name: "Nurzhol Boulevard",
+            type: "Business district"
+        },
+
+        {
+            name: "Mega Silk Way",
+            type: "Shopping centre",
+            hotspot: true
+        },
+
+        {
+            name: "Expo",
+            type: "Transport hotspot",
+            hotspot: true
+        }
+    ],
+
+    12: [
+        {
+            name: "Astana-1 Station",
+            type: "Transport hub",
+            hotspot: true
+        },
+
+        {
+            name: "Abai Avenue",
+            type: "Residential area"
+        },
+
+        {
+            name: "Respublika Avenue",
+            type: "City centre"
+        },
+
+        {
+            name: "Ishim Embankment",
+            type: "Public area"
+        },
+
+        {
+            name: "Khan Shatyr",
+            type: "Shopping hotspot",
+            hotspot: true
+        },
+
+        {
+            name: "Nurly Zhol",
+            type: "Transport hub",
+            hotspot: true
+        }
+    ],
+
+    40: [
+        {
+            name: "Airport",
+            type: "Transport hub",
+            hotspot: true
+        },
+
+        {
+            name: "Expo",
+            type: "Transport hotspot",
+            hotspot: true
+        },
+
+        {
+            name: "Mega Silk Way",
+            type: "Shopping centre"
+        },
+
+        {
+            name: "Mangilik El",
+            type: "Business district"
+        },
+
+        {
+            name: "Baiterek",
+            type: "City centre"
+        },
+
+        {
+            name: "Khan Shatyr",
+            type: "Shopping hotspot",
+            hotspot: true
+        }
+    ]
+
+};
+
+function getTimeMultiplier(time) {
+
+    const hour =
+        parseInt(
+            time.split(":")[0]
+        );
+
+    if (
+        hour >= 7 &&
+        hour < 10
+    ) {
+        return 1.3;
+    }
+
+    if (
+        hour >= 17 &&
+        hour < 20
+    ) {
+        return 1.35;
+    }
+
+    if (
+        hour >= 22 ||
+        hour < 6
+    ) {
+        return 0.55;
+    }
+
+    return 0.85;
+}
+
+function calculateOccupancy(
+    stops,
+    time,
+    direction
+) {
+
+    const multiplier =
+        getTimeMultiplier(time);
+
+    const hour =
+        parseInt(
+            time.split(":")[0]
+        );
+
+    let passengers =
+        20 + Math.random() * 15;
+
+    let results = [];
+
+    stops.forEach(
+        (stop, index) => {
+
+            let boarding =
+                4 + Math.random() * 14;
+
+            let leaving =
+                2 + Math.random() * 10;
+
+            if (
+                hour >= 7 &&
+                hour < 10 &&
+                index < stops.length / 2
+            ) {
+                boarding += 10;
+            }
+
+            if (
+                hour >= 17 &&
+                hour < 20 &&
+                index > stops.length / 3
+            ) {
+                boarding += 8;
+            }
+
+            if (
+                stop.hotspot
+            ) {
+                boarding +=
+                    6 + Math.random() * 10;
+
+                leaving +=
+                    5 + Math.random() * 9;
+            }
+
+            passengers +=
+                boarding * multiplier;
+
+            passengers -=
+                leaving;
+
+            passengers =
+                Math.max(
+                    10,
+                    Math.min(
+                        98,
+                        passengers
+                    )
+                );
+
+            let occupancy =
+                Math.round(
+                    passengers
+                );
+
+            occupancy +=
+                Math.floor(
+                    Math.random() * 7
+                ) - 3;
+
+            occupancy =
+                Math.max(
+                    8,
+                    Math.min(
+                        98,
+                        occupancy
+                    )
+                );
+
+            results.push({
+                ...stop,
+                occupancy
+            });
+
+        }
+    );
+
+    if (
+        direction === "reverse"
+    ) {
+        results.reverse();
+    }
+
+    return results;
+}
+
+function getOccupancyLevel(value) {
+
+    if (
+        value < 50
+    ) {
+        return {
+            name: "Low",
+            bar: "bar-low",
+            status: "status-low"
+        };
+    }
+
+    if (
+        value < 80
+    ) {
+        return {
+            name: "Medium",
+            bar: "bar-medium",
+            status: "status-medium"
+        };
+    }
+
+    return {
+        name: "High",
+        bar: "bar-high",
+        status: "status-high"
+    };
+}
+
+function renderRoute(data) {
+
+    const container =
+        document.getElementById(
+            "routeContainer"
+        );
+
+    container.innerHTML = "";
+
+    data.forEach(
+        stop => {
+
+            const level =
+                getOccupancyLevel(
+                    stop.occupancy
+                );
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "stop" +
+                (
+                    stop.hotspot
+                    ? " hotspot"
+                    : ""
+                );
+
+            row.innerHTML = `
+
+                <div>
+                    <div class="line"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="stop-info">
+                    <h4>${stop.name}</h4>
+                    <p>${stop.type}</p>
+                </div>
+
+                <div class="occupancy-box">
+
+                    <div class="occupancy-top">
+                        <span>Predicted</span>
+                        <strong>
+                            ${stop.occupancy}%
+                        </strong>
+                    </div>
+
+                    <div class="bar-bg">
+
+                        <div
+                            class="bar ${level.bar}"
+                            style="
+                                width:
+                                ${stop.occupancy}%;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="
+                        status
+                        ${level.status}
+                    "
+                >
+                    ${level.name}
+                </div>
+
+            `;
+
+            container.appendChild(
+                row
+            );
+        }
+    );
+
+}
+
+function renderChart(data) {
+
+    const chart =
+        document.getElementById(
+            "chart"
+        );
+
+    chart.innerHTML = "";
+
+    data.forEach(
+        stop => {
+
+            const column =
+                document.createElement(
+                    "div"
+                );
+
+            column.className =
+                "chart-column";
+
+            column.innerHTML = `
+
+                <div
+                    class="chart-bar"
+                    style="
+                        height:
+                        ${stop.occupancy}%;
+                    "
+                    title="
+                        ${stop.name}: ${stop.occupancy}%
+                    "
+                ></div>
+
+            `;
+
+            chart.appendChild(
+                column
+            );
+        }
+    );
+
+}
+
+function renderBusSeats(
+    occupancy
+) {
+
+    const container =
+        document.getElementById(
+            "busSeats"
+        );
+
+    container.innerHTML = "";
+
+    const totalSeats =
+        24;
+
+    const occupiedSeats =
+        Math.round(
+            totalSeats *
+            occupancy /
+            100
+        );
+
+    for (
+        let i = 0;
+        i < totalSeats;
+        i++
+    ) {
+
+        const seat =
+            document.createElement(
+                "div"
+            );
+
+        seat.className =
+            "seat";
+
+        if (
+            i < occupiedSeats
+        ) {
+            seat.classList.add(
+                "occupied"
+            );
+        }
+
+        container.appendChild(
+            seat
+        );
+    }
+
+}
+
+function updateRecommendation(
+    occupancy
+) {
+
+    const title =
+        document.getElementById(
+            "recommendationTitle"
+        );
+
+    const text =
+        document.getElementById(
+            "recommendationText"
+        );
+
+    if (
+        occupancy < 55
+    ) {
+
+        title.innerText =
+            "Good time to board";
+
+        text.innerText =
+            "The predicted occupancy is low. The bus should have enough available space.";
+
+    }
+
+    else if (
+        occupancy < 80
+    ) {
+
+        title.innerText =
+            "Moderate occupancy";
+
+        text.innerText =
+            "The bus may be moderately crowded, but boarding should still be comfortable.";
+
+    }
+
+    else if (
+        occupancy < 92
+    ) {
+
+        title.innerText =
+            "Crowded bus";
+
+        text.innerText =
+            "High passenger occupancy is expected. If possible, consider waiting for the next bus.";
+
+    }
+
+    else {
+
+        title.innerText =
+            "Very crowded";
+
+        text.innerText =
+            "The bus is predicted to be almost full. Waiting for another bus is recommended.";
+
+    }
+
+}
+
+function updateStats(
+    data,
+    time
+) {
+
+    const values =
+        data.map(
+            stop =>
+                stop.occupancy
+        );
+
+    const average =
+        Math.round(
+            values.reduce(
+                (a, b) =>
+                    a + b,
+                0
+            )
+            /
+            values.length
+        );
+
+    const peak =
+        Math.max(
+            ...values
+        );
+
+    document.getElementById(
+        "averageOccupancy"
+    ).innerText =
+        average + "%";
+
+    document.getElementById(
+        "peakOccupancy"
+    ).innerText =
+        peak + "%";
+
+    const hour =
+        parseInt(
+            time.split(":")[0]
+        );
+
+    let period =
+        "Normal";
+
+    if (
+        hour >= 7 &&
+        hour < 10
+    ) {
+        period =
+            "Morning";
+    }
+
+    else if (
+        hour >= 17 &&
+        hour < 20
+    ) {
+        period =
+            "Evening";
+    }
+
+    else if (
+        hour >= 22 ||
+        hour < 6
+    ) {
+        period =
+            "Night";
+    }
+
+    document.getElementById(
+        "peakPeriod"
+    ).innerText =
+        period;
+
+    return average;
+}
+
+function updatePrediction() {
+
+    const route =
+        document.getElementById(
+            "routeSelect"
+        ).value;
+
+    const direction =
+        document.getElementById(
+            "directionSelect"
+        ).value;
+
+    const time =
+        document.getElementById(
+            "timeInput"
+        ).value;
+
+    document.getElementById(
+        "predictionTime"
+    ).innerText =
+        time;
+
+    const selectedStops =
+        routes[route];
+
+    const prediction =
+        calculateOccupancy(
+            selectedStops,
+            time,
+            direction
+        );
+
+    renderRoute(
+        prediction
+    );
+
+    renderChart(
+        prediction
+    );
+
+    const average =
+        updateStats(
+            prediction,
+            time
+        );
+
+    updateRecommendation(
+        average
+    );
+
+    renderBusSeats(
+        average
+    );
+
+}
+
+document
+    .getElementById(
+        "timeInput"
+    )
+    .addEventListener(
+        "change",
+        updatePrediction
+    );
+
+document
+    .getElementById(
+        "routeSelect"
+    )
+    .addEventListener(
+        "change",
+        updatePrediction
+    );
+
+document
+    .getElementById(
+        "directionSelect"
+    )
+    .addEventListener(
+        "change",
+        updatePrediction
+    );
+
+updatePrediction();
+
+</script>
+
+</body>
+</html>
