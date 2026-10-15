@@ -394,3 +394,81 @@ button:hover {
   }
 
 }
+const stopSearch =
+document.getElementById("stopSearch");
+
+const searchButton =
+document.getElementById("searchButton");
+
+
+function searchStop() {
+
+  const searchText =
+  stopSearch.value
+  .toLowerCase()
+  .trim();
+
+
+  const route =
+  routes[routeSelect.value];
+
+
+  if (searchText === "") {
+
+    showRouteStops(
+      route,
+      Number(stopSelect.value)
+    );
+
+    return;
+
+  }
+
+
+  const foundIndex =
+  route.stops.findIndex(
+    stop =>
+    stop.name
+    .toLowerCase()
+    .includes(searchText)
+  );
+
+
+  if (foundIndex === -1) {
+
+    alert(
+      "Stop not found on this route."
+    );
+
+    return;
+
+  }
+
+
+  stopSelect.value =
+  foundIndex;
+
+
+  calculatePrediction();
+
+}
+
+
+searchButton.addEventListener(
+  "click",
+  searchStop
+);
+
+
+stopSearch.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+
+      searchStop();
+
+    }
+
+  }
+);
