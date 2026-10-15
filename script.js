@@ -977,3 +977,22 @@ document
 
 
 loadStops();
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #dce2ea;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.search-box button {
+  height: 42px;
+  padding: 0 18px;
+}
