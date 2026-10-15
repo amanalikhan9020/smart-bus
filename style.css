@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f5f7fb;
   color: #172033;
 }
@@ -21,6 +21,18 @@ header {
   gap: 12px;
 }
 
+.logo-box {
+  width: 45px;
+  height: 45px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
 .logo h2 {
   margin: 0;
 }
@@ -30,31 +42,14 @@ header {
   color: #718096;
 }
 
-.logo-box {
-  width: 45px;
-  height: 45px;
-  background: #3b82f6;
-  color: white;
-  border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: bold;
-}
-
-
 .hero {
   max-width: 1200px;
   margin: auto;
-
   padding: 60px 30px;
-
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-
   gap: 40px;
+  align-items: center;
 }
 
 .hero h1 {
@@ -71,21 +66,22 @@ header {
 .badge {
   background: #eaf3ff;
   color: #2563eb;
-
   padding: 8px 14px;
   border-radius: 20px;
-
   font-weight: bold;
 }
 
-
 .prediction-card {
-  background: #15366b;
+  background: linear-gradient(
+    135deg,
+    #15366b,
+    #1e4d91
+  );
+
   color: white;
-
   padding: 30px;
-
   border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
 .prediction-card h2 {
@@ -96,96 +92,68 @@ header {
 .hero-info {
   display: flex;
   justify-content: space-between;
-
   margin-top: 40px;
 }
 
 .hero-info span {
+  display: block;
   color: #cbd5e1;
+  margin-bottom: 5px;
 }
-
 
 main {
   max-width: 1200px;
   margin: auto;
-
   padding: 20px 30px 60px;
 }
 
-
-.main-card {
+.main-card,
+.map-section {
   background: white;
-
   border-radius: 20px;
-
   padding: 30px;
-
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
-
 
 .grey {
   color: #718096;
 }
 
-
 .controls {
   display: grid;
-
   grid-template-columns:
-    1fr
-    1fr
-    1fr
-    1fr;
+    1fr 1fr 1fr 1fr;
 
   gap: 15px;
-
   margin-top: 25px;
 }
 
-
 label {
   display: block;
-
   font-size: 13px;
   font-weight: bold;
-
   margin-bottom: 7px;
 }
 
-
-select {
+select,
+input {
   width: 100%;
-
-  padding: 13px;
-
-  border-radius: 10px;
-
+  height: 46px;
+  padding: 10px 13px;
   border: 1px solid #dce2ea;
-
+  border-radius: 10px;
   background: white;
-
   font-size: 15px;
 }
 
-
 button {
   align-self: end;
-
-  padding: 14px;
-
+  height: 46px;
   background: #3b82f6;
-
   color: white;
-
   border: none;
-
   border-radius: 10px;
-
-  font-size: 15px;
-
   font-weight: bold;
-
   cursor: pointer;
 }
 
@@ -193,71 +161,52 @@ button:hover {
   background: #2563eb;
 }
 
-
 .dashboard {
   margin-top: 30px;
-
   display: grid;
-
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns:
+    1.2fr 0.8fr;
 
   gap: 20px;
 }
 
-
 .stats {
   display: grid;
-
   grid-template-columns:
     repeat(3,1fr);
 
   gap: 15px;
 }
 
-
 .stat {
   border: 1px solid #e5e7eb;
-
   padding: 20px;
-
   border-radius: 15px;
 }
 
-
 .stat p {
   color: #718096;
-
   margin: 0;
 }
 
 .stat h2 {
   font-size: 30px;
-
   margin: 8px 0 0;
 }
 
-
 .occupancy-box {
   margin-top: 20px;
-
   border: 1px solid #e5e7eb;
-
   padding: 25px;
-
   border-radius: 15px;
 }
 
-
 .status {
   display: inline-block;
-
   padding: 7px 12px;
-
   border-radius: 20px;
-
   font-weight: bold;
 }
-
 
 .low {
   background: #dcfce7;
@@ -274,93 +223,103 @@ button:hover {
   color: #b91c1c;
 }
 
-
 .progress {
   height: 18px;
-
   background: #e5e7eb;
-
   border-radius: 20px;
-
   margin: 20px 0;
-
   overflow: hidden;
 }
 
-
 #progressBar {
   height: 100%;
-
   width: 72%;
-
   background: #ef4444;
-
   transition: 0.4s;
 }
 
-
 .recommendation {
   margin-top: 25px;
-
   background: #f8fafc;
-
   padding: 20px;
-
   border-radius: 15px;
 }
-
 
 .route-box {
   border: 1px solid #e5e7eb;
-
   border-radius: 15px;
-
   padding: 25px;
+
+  max-height: 600px;
+  overflow-y: auto;
 }
 
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+}
+
+.search-box button {
+  width: 100px;
+}
 
 .stop {
   border-left: 3px solid #bfdbfe;
-
   padding:
     5px
     10px
-    20px
+    22px
     20px;
 
   position: relative;
+  cursor: pointer;
 }
-
 
 .stop::before {
   content: "";
-
   position: absolute;
-
   left: -7px;
-
   top: 7px;
-
   width: 10px;
   height: 10px;
-
   border-radius: 50%;
-
   background: #3b82f6;
 }
 
-
 .stop.active {
+  color: #2563eb;
   font-weight: bold;
 }
 
-
-.hotspot {
-  color: #ef4444;
-
-  font-size: 12px;
+.stop.active::before {
+  width: 14px;
+  height: 14px;
+  left: -9px;
+  background: #2563eb;
 }
 
+.map-section {
+  margin-top: 30px;
+}
+
+#map {
+  width: 100%;
+  height: 480px;
+  margin-top: 20px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #718096;
+}
 
 @media (max-width: 850px) {
 
@@ -378,7 +337,6 @@ button:hover {
 
 }
 
-
 @media (max-width: 550px) {
 
   .controls {
@@ -393,82 +351,12 @@ button:hover {
     font-size: 40px;
   }
 
-}
-const stopSearch =
-document.getElementById("stopSearch");
-
-const searchButton =
-document.getElementById("searchButton");
-
-
-function searchStop() {
-
-  const searchText =
-  stopSearch.value
-  .toLowerCase()
-  .trim();
-
-
-  const route =
-  routes[routeSelect.value];
-
-
-  if (searchText === "") {
-
-    showRouteStops(
-      route,
-      Number(stopSelect.value)
-    );
-
-    return;
-
+  .search-box {
+    flex-direction: column;
   }
 
-
-  const foundIndex =
-  route.stops.findIndex(
-    stop =>
-    stop.name
-    .toLowerCase()
-    .includes(searchText)
-  );
-
-
-  if (foundIndex === -1) {
-
-    alert(
-      "Stop not found on this route."
-    );
-
-    return;
-
+  .search-box button {
+    width: 100%;
   }
-
-
-  stopSelect.value =
-  foundIndex;
-
-
-  calculatePrediction();
 
 }
-
-
-searchButton.addEventListener(
-  "click",
-  searchStop
-);
-
-
-stopSearch.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Enter") {
-
-      searchStop();
-
-    }
-
-  }
-);
