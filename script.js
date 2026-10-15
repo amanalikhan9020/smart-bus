@@ -6,539 +6,531 @@ const routes = {
     stops: [
 
       {
-        name: "Астана-1 вокзал",
-        factor: 0.60,
-        hot: true
+        name: "Железнодорожный вокзал",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.60
       },
 
       {
-        name: "Проспект Абая",
-        factor: 0.50
+        name: "Улица Биржан Сала",
+        lat: 51.190,
+        lng: 71.414,
+        factor: 0.48
       },
 
       {
-        name: "Республика",
-        factor: 0.55,
-        hot: true
+        name: "Агротехнический университет",
+        lat: 51.174,
+        lng: 71.421,
+        factor: 0.55
       },
 
       {
-        name: "Keruen City",
-        factor: 0.58,
-        hot: true
+        name: "Медицинский университет",
+        lat: 51.169,
+        lng: 71.423,
+        factor: 0.58
       },
 
       {
-        name: "Khan Shatyr",
-        factor: 0.70,
-        hot: true
+        name: "Проспект Республики",
+        lat: 51.162,
+        lng: 71.431,
+        factor: 0.65
       },
 
       {
-        name: "Городской парк",
-        factor: 0.50
-      },
-
-      {
-        name: "Байтерек",
-        factor: 0.65,
-        hot: true
-      },
-
-      {
-        name: "Astana Opera",
-        factor: 0.60,
-        hot: true
-      },
-
-      {
-        name: "Ботанический сад",
+        name: "Парк Ататюрк",
+        lat: 51.146,
+        lng: 71.433,
         factor: 0.45
       },
 
       {
-        name: "Nazarbayev University",
-        factor: 0.58,
-        hot: true
+        name: "Динмухамеда Кунаева",
+        lat: 51.133,
+        lng: 71.433,
+        factor: 0.55
       },
 
       {
-        name: "Mega Silk Way",
-        factor: 0.64,
-        hot: true
+        name: "Туран",
+        lat: 51.124,
+        lng: 71.420,
+        factor: 0.60
       },
 
       {
-        name: "EXPO-2017",
-        factor: 0.57,
-        hot: true
+        name: "Кабанбай батыра",
+        lat: 51.111,
+        lng: 71.426,
+        factor: 0.55
+      },
+
+      {
+        name: "Международный аэропорт",
+        lat: 51.022,
+        lng: 71.467,
+        factor: 0.50
       }
 
     ]
   },
-
-
-
-  "12": {
-
-    capacity: 95,
-
-    stops: [
-
-      {
-        name: "Сарыарка",
-        factor: 0.30
-      },
-
-      {
-        name: "Центральный рынок",
-        factor: 0.52,
-        hot: true
-      },
-
-      {
-        name: "Республика",
-        factor: 0.55,
-        hot: true
-      },
-
-      {
-        name: "Keruen City",
-        factor: 0.57,
-        hot: true
-      },
-
-      {
-        name: "Khan Shatyr",
-        factor: 0.68,
-        hot: true
-      },
-
-      {
-        name: "Astana Opera",
-        factor: 0.60,
-        hot: true
-      },
-
-      {
-        name: "Байтерек",
-        factor: 0.63,
-        hot: true
-      },
-
-      {
-        name: "Ботанический сад",
-        factor: 0.42
-      },
-
-      {
-        name: "Nazarbayev University",
-        factor: 0.58,
-        hot: true
-      },
-
-      {
-        name: "EXPO-2017",
-        factor: 0.56,
-        hot: true
-      },
-
-      {
-        name: "Mega Silk Way",
-        factor: 0.62,
-        hot: true
-      }
-
-    ]
-  },
-
 
 
   "21": {
-
     capacity: 105,
 
     stops: [
 
       {
-        name: "ЖК Багыстан",
-        factor: 0.10
+        name: "Железнодорожный вокзал",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.60
       },
 
       {
-        name: "Школа №108",
-        factor: 0.15
-      },
-
-      {
-        name: "ЖК Отырар",
-        factor: 0.19
-      },
-
-      {
-        name: "ЖК Jetisu Lepsi",
-        factor: 0.24
-      },
-
-      {
-        name: "Ботанический сад",
+        name: "Театр Жастар",
+        lat: 51.181,
+        lng: 71.417,
         factor: 0.43
       },
 
       {
-        name: "Nazarbayev University",
-        factor: 0.56,
-        hot: true
+        name: "Проспект Женис",
+        lat: 51.173,
+        lng: 71.420,
+        factor: 0.50
       },
 
       {
-        name: "Mega Silk Way",
-        factor: 0.64,
-        hot: true
+        name: "ЖК Сарайшык",
+        lat: 51.151,
+        lng: 71.437,
+        factor: 0.45
       },
 
       {
-        name: "EXPO-2017",
-        factor: 0.59,
-        hot: true
+        name: "Рахимжана Кошкарбаева",
+        lat: 51.137,
+        lng: 71.462,
+        factor: 0.53
       },
 
       {
-        name: "Barys Arena",
-        factor: 0.47,
-        hot: true
+        name: "ЖК Турсын-Астана",
+        lat: 51.127,
+        lng: 71.468,
+        factor: 0.41
       },
 
       {
-        name: "Astana Arena",
-        factor: 0.45,
-        hot: true
+        name: "Ахмета Байтурсынова",
+        lat: 51.120,
+        lng: 71.470,
+        factor: 0.46
       },
 
       {
-        name: "Байтерек",
-        factor: 0.65,
-        hot: true
+        name: "Дворец творчества Шабыт",
+        lat: 51.116,
+        lng: 71.468,
+        factor: 0.55
+      },
+
+      {
+        name: "Тауелсыздык",
+        lat: 51.111,
+        lng: 71.462,
+        factor: 0.51
+      },
+
+      {
+        name: "Мангилик Ел",
+        lat: 51.101,
+        lng: 71.437,
+        factor: 0.59
+      },
+
+      {
+        name: "Вокзал Нурлы Жол",
+        lat: 51.100,
+        lng: 71.531,
+        factor: 0.58
       }
 
     ]
   },
 
 
-
   "26": {
-
     capacity: 105,
 
     stops: [
 
       {
-        name: "ЖК Багыстан",
-        factor: 0.08
+        name: "Ж/м Караоткель",
+        lat: 51.198,
+        lng: 71.337,
+        factor: 0.32
       },
 
       {
-        name: "Средняя школа №108",
-        factor: 0.12
-      },
-
-      {
-        name: "ЖК Отырар",
-        factor: 0.16
-      },
-
-      {
-        name: "ЖК Jetisu Lepsi",
-        factor: 0.20
-      },
-
-      {
-        name: "Керей, Жанибек хандар",
-        factor: 0.25
-      },
-
-      {
-        name: "Ботанический сад",
+        name: "Акыртас",
+        lat: 51.191,
+        lng: 71.348,
         factor: 0.34
       },
 
       {
-        name: "EXPO-2017",
-        factor: 0.58,
-        hot: true
+        name: "Проспект Тауелсиздик",
+        lat: 51.170,
+        lng: 71.414,
+        factor: 0.51
       },
 
       {
-        name: "Mega Silk Way",
-        factor: 0.61,
-        hot: true
+        name: "ТРЦ Ажар",
+        lat: 51.164,
+        lng: 71.423,
+        factor: 0.56
       },
 
       {
-        name: "Nazarbayev University",
-        factor: 0.55,
-        hot: true
+        name: "Шарля де Голля",
+        lat: 51.154,
+        lng: 71.428,
+        factor: 0.42
       },
 
       {
-        name: "Barys Arena",
-        factor: 0.48,
-        hot: true
+        name: "Медицинский центр",
+        lat: 51.147,
+        lng: 71.434,
+        factor: 0.48
       },
 
       {
-        name: "Astana Arena",
-        factor: 0.44,
-        hot: true
+        name: "Школа-гимназия №30",
+        lat: 51.141,
+        lng: 71.439,
+        factor: 0.45
       },
 
       {
-        name: "Бульвар Нуржол",
-        factor: 0.53
+        name: "Алексея Петрова",
+        lat: 51.136,
+        lng: 71.445,
+        factor: 0.41
       },
 
       {
-        name: "Байтерек",
-        factor: 0.63,
-        hot: true
+        name: "ТД Меридиан",
+        lat: 51.129,
+        lng: 71.451,
+        factor: 0.56
       },
 
       {
-        name: "Astana Opera",
-        factor: 0.60,
-        hot: true
+        name: "СК Казахстан",
+        lat: 51.124,
+        lng: 71.457,
+        factor: 0.62
       },
 
       {
-        name: "ТРЦ Keruen",
-        factor: 0.66,
-        hot: true
+        name: "ТД Орбита",
+        lat: 51.118,
+        lng: 71.462,
+        factor: 0.57
       },
 
       {
-        name: "Khan Shatyr",
-        factor: 0.73,
-        hot: true
-      },
-
-      {
-        name: "Городской парк",
-        factor: 0.52
+        name: "Монумент Защитников Отечества",
+        lat: 51.112,
+        lng: 71.465,
+        factor: 0.59
       }
 
     ]
   },
 
 
-
   "40": {
-
     capacity: 110,
 
     stops: [
 
       {
-        name: "Нурлы Жол",
-        factor: 0.60,
-        hot: true
+        name: "Железнодорожный вокзал",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.61
       },
 
       {
-        name: "Момышулы",
-        factor: 0.47
+        name: "Театр Жастар",
+        lat: 51.181,
+        lng: 71.417,
+        factor: 0.46
       },
 
       {
-        name: "Дворец школьников",
-        factor: 0.39
+        name: "Алтынсарина",
+        lat: 51.177,
+        lng: 71.419,
+        factor: 0.42
       },
 
       {
-        name: "Хазрет Султан",
+        name: "Алии Молдагуловой",
+        lat: 51.173,
+        lng: 71.421,
+        factor: 0.44
+      },
+
+      {
+        name: "Школа-лицей №15",
+        lat: 51.169,
+        lng: 71.420,
         factor: 0.48
       },
 
       {
-        name: "Национальный музей",
-        factor: 0.43
+        name: "Университет искусств",
+        lat: 51.163,
+        lng: 71.419,
+        factor: 0.53
       },
 
       {
-        name: "Министерства",
-        factor: 0.55
+        name: "Городская поликлиника №1",
+        lat: 51.157,
+        lng: 71.420,
+        factor: 0.51
       },
 
       {
-        name: "Байтерек",
-        factor: 0.66,
-        hot: true
+        name: "Дворец Жастар",
+        lat: 51.151,
+        lng: 71.421,
+        factor: 0.56
       },
 
       {
-        name: "Astana Opera",
-        factor: 0.62,
-        hot: true
-      },
-
-      {
-        name: "Khan Shatyr",
-        factor: 0.71,
-        hot: true
-      },
-
-      {
-        name: "Keruen City",
+        name: "Астаналык базар",
+        lat: 51.146,
+        lng: 71.423,
         factor: 0.59
       },
 
       {
-        name: "Республика",
+        name: "Улица Кенесары",
+        lat: 51.139,
+        lng: 71.429,
         factor: 0.55
       },
 
       {
-        name: "Астана-1 вокзал",
-        factor: 0.58
+        name: "Евразийский национальный университет",
+        lat: 51.132,
+        lng: 71.470,
+        factor: 0.61
+      },
+
+      {
+        name: "Пожарная часть №4",
+        lat: 51.106,
+        lng: 71.402,
+        factor: 0.40
       }
 
     ]
   },
 
 
-
   "44": {
-
     capacity: 98,
 
     stops: [
 
       {
-        name: "Астана-1 вокзал",
-        factor: 0.62,
-        hot: true
+        name: "Ж/м Жагалау-3",
+        lat: 51.151,
+        lng: 71.353,
+        factor: 0.36
       },
 
       {
-        name: "Проспект Абая",
-        factor: 0.54
+        name: "ЖК Кулагер",
+        lat: 51.149,
+        lng: 71.361,
+        factor: 0.39
       },
 
       {
-        name: "Республика",
-        factor: 0.57
+        name: "Улица Айтматова",
+        lat: 51.145,
+        lng: 71.372,
+        factor: 0.42
       },
 
       {
-        name: "Keruen City",
-        factor: 0.61,
-        hot: true
+        name: "Университет технологии и бизнеса",
+        lat: 51.142,
+        lng: 71.381,
+        factor: 0.53
       },
 
       {
-        name: "Astana Opera",
+        name: "ЖК Дания",
+        lat: 51.138,
+        lng: 71.389,
+        factor: 0.43
+      },
+
+      {
+        name: "Школа Жасулан",
+        lat: 51.134,
+        lng: 71.398,
+        factor: 0.47
+      },
+
+      {
+        name: "Автоцентр Сарыарка",
+        lat: 51.132,
+        lng: 71.407,
+        factor: 0.48
+      },
+
+      {
+        name: "РЦ Думан",
+        lat: 51.130,
+        lng: 71.414,
         factor: 0.55
       },
 
       {
-        name: "Байтерек",
-        factor: 0.64,
-        hot: true
+        name: "Александра Бараева",
+        lat: 51.128,
+        lng: 71.423,
+        factor: 0.53
       },
 
       {
-        name: "Министерства",
-        factor: 0.51
+        name: "Монумент Защитников Отечества",
+        lat: 51.112,
+        lng: 71.465,
+        factor: 0.61
       },
 
       {
-        name: "Ботанический сад",
-        factor: 0.38
+        name: "ТД Орбита",
+        lat: 51.109,
+        lng: 71.468,
+        factor: 0.58
       },
 
       {
-        name: "EXPO-2017",
-        factor: 0.51,
-        hot: true
-      },
-
-      {
-        name: "Mega Silk Way",
-        factor: 0.57,
-        hot: true
+        name: "ТЦ Евразия",
+        lat: 51.104,
+        lng: 71.472,
+        factor: 0.65
       }
 
     ]
   },
 
 
-
   "50": {
-
-    capacity: 102,
+    capacity: 105,
 
     stops: [
 
       {
-        name: "Аэропорт",
-        factor: 0.48,
-        hot: true
+        name: "ЖК Коктем",
+        lat: 51.210,
+        lng: 71.370,
+        factor: 0.36
       },
 
       {
-        name: "EXPO-2017",
-        factor: 0.56,
-        hot: true
+        name: "Парк Коктал",
+        lat: 51.202,
+        lng: 71.379,
+        factor: 0.39
       },
 
       {
-        name: "Mega Silk Way",
-        factor: 0.63,
-        hot: true
+        name: "Средняя школа №106",
+        lat: 51.194,
+        lng: 71.389,
+        factor: 0.43
       },
 
       {
-        name: "Nazarbayev University",
-        factor: 0.59,
-        hot: true
+        name: "Детский сад Бал-бала",
+        lat: 51.184,
+        lng: 71.400,
+        factor: 0.41
       },
 
       {
-        name: "Ботанический сад",
-        factor: 0.45
+        name: "Поликлиника №10",
+        lat: 51.171,
+        lng: 71.415,
+        factor: 0.48
       },
 
       {
-        name: "Министерства",
+        name: "Улица Сейфуллина",
+        lat: 51.160,
+        lng: 71.421,
+        factor: 0.52
+      },
+
+      {
+        name: "Улица Кенесары",
+        lat: 51.149,
+        lng: 71.426,
+        factor: 0.55
+      },
+
+      {
+        name: "Парк Астана",
+        lat: 51.136,
+        lng: 71.419,
+        factor: 0.51
+      },
+
+      {
+        name: "Национальный музей",
+        lat: 51.118,
+        lng: 71.470,
+        factor: 0.62
+      },
+
+      {
+        name: "Президентский парк",
+        lat: 51.111,
+        lng: 71.465,
         factor: 0.53
       },
 
       {
-        name: "Байтерек",
-        factor: 0.67,
-        hot: true
+        name: "Мангилик Ел",
+        lat: 51.101,
+        lng: 71.437,
+        factor: 0.59
       },
 
       {
-        name: "Astana Opera",
-        factor: 0.61,
-        hot: true
-      },
-
-      {
-        name: "Khan Shatyr",
-        factor: 0.72,
-        hot: true
-      },
-
-      {
-        name: "Keruen City",
-        factor: 0.58
-      },
-
-      {
-        name: "Астана-1 вокзал",
-        factor: 0.61,
-        hot: true
+        name: "Ж/м Промышленный",
+        lat: 51.092,
+        lng: 71.493,
+        factor: 0.31
       }
 
     ]
@@ -547,69 +539,225 @@ const routes = {
 };
 
 
-
 const routeSelect =
 document.getElementById("route");
 
 const stopSelect =
 document.getElementById("stop");
 
-const timeSelect =
+const timeInput =
 document.getElementById("time");
 
+const stopSearch =
+document.getElementById("stopSearch");
+
+const searchButton =
+document.getElementById("searchButton");
+
+
+const map =
+L.map("map")
+.setView(
+  [51.145, 71.430],
+  11
+);
+
+
+L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    attribution:
+    "&copy; OpenStreetMap contributors"
+  }
+).addTo(map);
+
+
+let stopMarkers = [];
+
+let routeLine = null;
+
+
+function clearMap() {
+
+  stopMarkers.forEach(
+    marker => {
+      map.removeLayer(marker);
+    }
+  );
+
+  stopMarkers = [];
+
+  if (routeLine) {
+    map.removeLayer(routeLine);
+  }
+
+}
+
+
+function drawRoute() {
+
+  clearMap();
+
+  const route =
+  routes[routeSelect.value];
+
+  const coordinates = [];
+
+
+  route.stops.forEach(
+    (stop, index) => {
+
+      coordinates.push(
+        [
+          stop.lat,
+          stop.lng
+        ]
+      );
+
+
+      const marker =
+      L.marker(
+        [
+          stop.lat,
+          stop.lng
+        ]
+      )
+      .addTo(map)
+      .bindPopup(
+        `
+        <strong>${stop.name}</strong>
+        <br>
+        Bus ${routeSelect.value}
+        `
+      );
+
+
+      marker.on(
+        "click",
+        function() {
+
+          stopSelect.value =
+          index;
+
+          calculatePrediction();
+
+        }
+      );
+
+
+      stopMarkers.push(
+        marker
+      );
+
+    }
+  );
+
+
+  routeLine =
+  L.polyline(
+    coordinates,
+    {
+      weight: 5
+    }
+  )
+  .addTo(map);
+
+
+  map.fitBounds(
+    routeLine.getBounds(),
+    {
+      padding:
+      [30,30]
+    }
+  );
+
+}
 
 
 function loadStops() {
 
   const route =
-  routes[routeSelect.value];
+  routes[
+    routeSelect.value
+  ];
 
-  stopSelect.innerHTML = "";
+
+  stopSelect.innerHTML =
+  "";
 
 
-  route.stops.forEach((stop,index) => {
+  route.stops.forEach(
+    (stop,index) => {
 
-    const option =
-    document.createElement("option");
+      const option =
+      document.createElement(
+        "option"
+      );
 
-    option.value = index;
+      option.value =
+      index;
 
-    option.textContent =
-    stop.name;
+      option.textContent =
+      stop.name;
 
-    stopSelect.appendChild(option);
+      stopSelect.appendChild(
+        option
+      );
 
-  });
+    }
+  );
 
+
+  stopSearch.value =
+  "";
+
+
+  drawRoute();
 
   calculatePrediction();
 
 }
 
 
+function getTimeFactor(
+  hour
+) {
 
-function getTimeFactor(hour) {
-
-  if (hour >= 7 && hour < 9) {
-    return 0.25;
+  if (
+    hour >= 7 &&
+    hour < 9
+  ) {
+    return 0.27;
   }
 
-  if (hour >= 17 && hour < 20) {
-    return 0.30;
+
+  if (
+    hour >= 17 &&
+    hour < 20
+  ) {
+    return 0.32;
   }
 
-  if (hour >= 12 && hour < 14) {
-    return 0.12;
+
+  if (
+    hour >= 12 &&
+    hour < 14
+  ) {
+    return 0.14;
   }
 
-  if (hour >= 21 || hour < 6) {
+
+  if (
+    hour >= 21 ||
+    hour < 6
+  ) {
     return -0.15;
   }
+
 
   return 0.03;
 
 }
-
 
 
 function calculatePrediction() {
@@ -617,21 +765,32 @@ function calculatePrediction() {
   const routeNumber =
   routeSelect.value;
 
+
   const route =
-  routes[routeNumber];
+  routes[
+    routeNumber
+  ];
+
 
   const stopIndex =
-  Number(stopSelect.value);
+  Number(
+    stopSelect.value
+  );
+
 
   const stop =
-  route.stops[stopIndex];
+  route.stops[
+    stopIndex
+  ];
 
 
   const time =
-  timeSelect.value;
+  timeInput.value;
+
 
   const parts =
   time.split(":");
+
 
   const hour =
   Number(parts[0]) +
@@ -639,41 +798,54 @@ function calculatePrediction() {
 
 
   const timeFactor =
-  getTimeFactor(hour);
+  getTimeFactor(
+    hour
+  );
 
 
   const variation =
   Math.sin(
-    stopIndex * 1.4 +
-    hour
+    stopIndex * 1.31 +
+    hour * 0.7
   ) * 0.05;
 
 
   let occupancy =
+
   20 +
+
   stop.factor * 60 +
+
   timeFactor * 70 +
+
   variation * 100;
 
 
   occupancy =
-  Math.round(occupancy);
+  Math.round(
+    occupancy
+  );
 
 
-  if (occupancy > 96) {
-    occupancy = 96;
-  }
-
-  if (occupancy < 15) {
-    occupancy = 15;
-  }
+  occupancy =
+  Math.max(
+    15,
+    Math.min(
+      96,
+      occupancy
+    )
+  );
 
 
   const passengers =
   Math.round(
+
     route.capacity *
+
     occupancy /
+
     100
+
   );
 
 
@@ -692,8 +864,12 @@ function calculatePrediction() {
     stopIndex
   );
 
-}
 
+  focusStop(
+    stop
+  );
+
+}
 
 
 function updateInterface(
@@ -705,44 +881,66 @@ function updateInterface(
   hour
 ) {
 
-  document.getElementById("percent")
+  document
+  .getElementById(
+    "percent"
+  )
   .textContent =
   occupancy + "%";
 
 
-  document.getElementById("passengers")
+  document
+  .getElementById(
+    "passengers"
+  )
   .textContent =
   passengers;
 
 
-  document.getElementById("capacity")
+  document
+  .getElementById(
+    "capacity"
+  )
   .textContent =
   route.capacity;
 
 
-  document.getElementById("heroPercent")
+  document
+  .getElementById(
+    "heroPercent"
+  )
   .textContent =
   occupancy + "%";
 
 
-  document.getElementById("heroRoute")
+  document
+  .getElementById(
+    "heroRoute"
+  )
   .textContent =
-  "Bus " + routeNumber;
+  "Bus " +
+  routeNumber;
 
 
   const status =
-  document.getElementById("status");
+  document.getElementById(
+    "status"
+  );
 
 
   const progress =
-  document.getElementById("progressBar");
+  document.getElementById(
+    "progressBar"
+  );
 
 
   let nextBus =
   8;
 
 
-  if (occupancy < 45) {
+  if (
+    occupancy < 45
+  ) {
 
     status.textContent =
     "Low";
@@ -753,25 +951,32 @@ function updateInterface(
     progress.style.background =
     "#22c55e";
 
-
-    document.getElementById("heroStatus")
+    document
+    .getElementById(
+      "heroStatus"
+    )
     .textContent =
     "Low occupancy";
 
-
-    document.getElementById("recommendation")
+    document
+    .getElementById(
+      "recommendation"
+    )
     .textContent =
     "Take this bus.";
 
-
-    document.getElementById("recommendationDetail")
+    document
+    .getElementById(
+      "recommendationDetail"
+    )
     .textContent =
     "The bus is expected to have enough free space.";
 
   }
 
-
-  else if (occupancy < 75) {
+  else if (
+    occupancy < 75
+  ) {
 
     status.textContent =
     "Medium";
@@ -782,23 +987,28 @@ function updateInterface(
     progress.style.background =
     "#f59e0b";
 
-
-    document.getElementById("heroStatus")
+    document
+    .getElementById(
+      "heroStatus"
+    )
     .textContent =
     "Medium occupancy";
 
-
-    document.getElementById("recommendation")
+    document
+    .getElementById(
+      "recommendation"
+    )
     .textContent =
     "You can take this bus.";
 
-
-    document.getElementById("recommendationDetail")
+    document
+    .getElementById(
+      "recommendationDetail"
+    )
     .textContent =
     "The bus may be moderately crowded.";
 
   }
-
 
   else {
 
@@ -811,21 +1021,26 @@ function updateInterface(
     progress.style.background =
     "#ef4444";
 
-
-    document.getElementById("heroStatus")
+    document
+    .getElementById(
+      "heroStatus"
+    )
     .textContent =
     "High occupancy";
 
-
-    document.getElementById("recommendation")
+    document
+    .getElementById(
+      "recommendation"
+    )
     .textContent =
     "Wait for the next bus if possible.";
 
-
-    document.getElementById("recommendationDetail")
+    document
+    .getElementById(
+      "recommendationDetail"
+    )
     .textContent =
     "The next bus may be less crowded.";
-
 
     nextBus =
     6;
@@ -837,12 +1052,16 @@ function updateInterface(
   occupancy + "%";
 
 
-  document.getElementById("heroNext")
+  document
+  .getElementById(
+    "heroNext"
+  )
   .textContent =
   nextBus + " min";
 
 
-  let context = "";
+  let context =
+  "Normal traffic period.";
 
 
   if (
@@ -851,44 +1070,30 @@ function updateInterface(
   ) {
 
     context =
-    "Morning peak increases expected demand.";
+    "Morning peak increases expected passenger demand.";
 
   }
 
 
-  else if (
+  if (
     hour >= 17 &&
     hour < 20
   ) {
 
     context =
-    "Evening peak increases expected demand.";
+    "Evening peak increases expected passenger demand.";
 
   }
 
 
-  else {
-
-    context =
-    "Normal traffic period.";
-
-  }
-
-
-  if (stop.hot) {
-
-    context +=
-    " This stop is a high-demand location.";
-
-  }
-
-
-  document.getElementById("contextText")
+  document
+  .getElementById(
+    "contextText"
+  )
   .textContent =
   context;
 
 }
-
 
 
 function showRouteStops(
@@ -897,24 +1102,58 @@ function showRouteStops(
 ) {
 
   const container =
-  document.getElementById("routeStops");
+  document.getElementById(
+    "routeStops"
+  );
 
 
-  container.innerHTML = "";
+  const searchText =
+  stopSearch.value
+  .toLowerCase()
+  .trim();
+
+
+  container.innerHTML =
+  "";
 
 
   route.stops.forEach(
     (stop,index) => {
 
+
+      const matchesSearch =
+
+      stop.name
+      .toLowerCase()
+      .includes(
+        searchText
+      );
+
+
+      if (
+        searchText !== "" &&
+        !matchesSearch
+      ) {
+
+        return;
+
+      }
+
+
       const div =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
 
       div.className =
       "stop";
 
 
-      if (index === activeStop) {
+      if (
+        index ===
+        activeStop
+      ) {
 
         div.classList.add(
           "active"
@@ -926,17 +1165,21 @@ function showRouteStops(
       div.innerHTML =
       `
       <strong>
+        ${index + 1}.
         ${stop.name}
       </strong>
-
-      ${
-        stop.hot
-        ?
-        '<div class="hotspot">High-demand stop</div>'
-        :
-        ''
-      }
       `;
+
+
+      div.onclick =
+      function() {
+
+        stopSelect.value =
+        index;
+
+        calculatePrediction();
+
+      };
 
 
       container.appendChild(
@@ -949,50 +1192,159 @@ function showRouteStops(
 }
 
 
+function focusStop(
+  stop
+) {
 
-routeSelect.addEventListener(
+  map.flyTo(
+    [
+      stop.lat,
+      stop.lng
+    ],
+    14,
+    {
+      duration:
+      1
+    }
+  );
+
+}
+
+
+function searchStop() {
+
+  const searchText =
+  stopSearch.value
+  .toLowerCase()
+  .trim();
+
+
+  const route =
+  routes[
+    routeSelect.value
+  ];
+
+
+  if (
+    searchText === ""
+  ) {
+
+    showRouteStops(
+      route,
+      Number(
+        stopSelect.value
+      )
+    );
+
+    return;
+
+  }
+
+
+  const foundIndex =
+  route.stops.findIndex(
+    stop =>
+    stop.name
+    .toLowerCase()
+    .includes(
+      searchText
+    )
+  );
+
+
+  if (
+    foundIndex === -1
+  ) {
+
+    alert(
+      "Stop not found on this route."
+    );
+
+    return;
+
+  }
+
+
+  stopSelect.value =
+  foundIndex;
+
+
+  calculatePrediction();
+
+}
+
+
+routeSelect
+.addEventListener(
   "change",
   loadStops
 );
 
 
-stopSelect.addEventListener(
+stopSelect
+.addEventListener(
   "change",
   calculatePrediction
 );
 
 
-timeSelect.addEventListener(
+timeInput
+.addEventListener(
   "change",
   calculatePrediction
 );
 
 
 document
-.getElementById("predictButton")
+.getElementById(
+  "predictButton"
+)
 .addEventListener(
   "click",
   calculatePrediction
 );
 
 
+searchButton
+.addEventListener(
+  "click",
+  searchStop
+);
+
+
+stopSearch
+.addEventListener(
+  "input",
+  function() {
+
+    showRouteStops(
+      routes[
+        routeSelect.value
+      ],
+      Number(
+        stopSelect.value
+      )
+    );
+
+  }
+);
+
+
+stopSearch
+.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      searchStop();
+
+    }
+
+  }
+);
+
+
 loadStops();
-.search-box {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.search-box input {
-  flex: 1;
-  height: 42px;
-  padding: 10px 12px;
-  border: 1px solid #dce2ea;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.search-box button {
-  height: 42px;
-  padding: 0 18px;
-}
