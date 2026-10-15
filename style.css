@@ -1,0 +1,396 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
+
+header {
+  background: white;
+  padding: 18px 7%;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo h2 {
+  margin: 0;
+}
+
+.logo p {
+  margin: 3px 0 0;
+  color: #718096;
+}
+
+.logo-box {
+  width: 45px;
+  height: 45px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+}
+
+
+.hero {
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 60px 30px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+
+  gap: 40px;
+}
+
+.hero h1 {
+  font-size: 55px;
+  margin: 15px 0;
+}
+
+.hero-text p {
+  font-size: 18px;
+  color: #718096;
+  max-width: 650px;
+}
+
+.badge {
+  background: #eaf3ff;
+  color: #2563eb;
+
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  font-weight: bold;
+}
+
+
+.prediction-card {
+  background: #15366b;
+  color: white;
+
+  padding: 30px;
+
+  border-radius: 25px;
+}
+
+.prediction-card h2 {
+  font-size: 55px;
+  margin: 10px 0;
+}
+
+.hero-info {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 40px;
+}
+
+.hero-info span {
+  color: #cbd5e1;
+}
+
+
+main {
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 20px 30px 60px;
+}
+
+
+.main-card {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+
+.grey {
+  color: #718096;
+}
+
+
+.controls {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    1fr;
+
+  gap: 15px;
+
+  margin-top: 25px;
+}
+
+
+label {
+  display: block;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  margin-bottom: 7px;
+}
+
+
+select {
+  width: 100%;
+
+  padding: 13px;
+
+  border-radius: 10px;
+
+  border: 1px solid #dce2ea;
+
+  background: white;
+
+  font-size: 15px;
+}
+
+
+button {
+  align-self: end;
+
+  padding: 14px;
+
+  background: #3b82f6;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+
+.dashboard {
+  margin-top: 30px;
+
+  display: grid;
+
+  grid-template-columns: 1.2fr 0.8fr;
+
+  gap: 20px;
+}
+
+
+.stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 15px;
+}
+
+
+.stat {
+  border: 1px solid #e5e7eb;
+
+  padding: 20px;
+
+  border-radius: 15px;
+}
+
+
+.stat p {
+  color: #718096;
+
+  margin: 0;
+}
+
+.stat h2 {
+  font-size: 30px;
+
+  margin: 8px 0 0;
+}
+
+
+.occupancy-box {
+  margin-top: 20px;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 25px;
+
+  border-radius: 15px;
+}
+
+
+.status {
+  display: inline-block;
+
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+}
+
+
+.low {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+
+.progress {
+  height: 18px;
+
+  background: #e5e7eb;
+
+  border-radius: 20px;
+
+  margin: 20px 0;
+
+  overflow: hidden;
+}
+
+
+#progressBar {
+  height: 100%;
+
+  width: 72%;
+
+  background: #ef4444;
+
+  transition: 0.4s;
+}
+
+
+.recommendation {
+  margin-top: 25px;
+
+  background: #f8fafc;
+
+  padding: 20px;
+
+  border-radius: 15px;
+}
+
+
+.route-box {
+  border: 1px solid #e5e7eb;
+
+  border-radius: 15px;
+
+  padding: 25px;
+}
+
+
+.stop {
+  border-left: 3px solid #bfdbfe;
+
+  padding:
+    5px
+    10px
+    20px
+    20px;
+
+  position: relative;
+}
+
+
+.stop::before {
+  content: "";
+
+  position: absolute;
+
+  left: -7px;
+
+  top: 7px;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #3b82f6;
+}
+
+
+.stop.active {
+  font-weight: bold;
+}
+
+
+.hotspot {
+  color: #ef4444;
+
+  font-size: 12px;
+}
+
+
+@media (max-width: 850px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+}
