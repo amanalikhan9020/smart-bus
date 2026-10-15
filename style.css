@@ -4,7 +4,6 @@
 
 
 body {
-
   margin: 0;
 
   font-family:
@@ -17,13 +16,12 @@ body {
 
   color:
     #172033;
-
 }
 
 
+/* HEADER */
 
 header {
-
   background:
     white;
 
@@ -32,13 +30,10 @@ header {
 
   border-bottom:
     1px solid #e5e7eb;
-
 }
 
 
-
 .logo {
-
   display:
     flex;
 
@@ -47,12 +42,10 @@ header {
 
   gap:
     12px;
-
 }
 
 
 .logo-box {
-
   width:
     45px;
 
@@ -79,32 +72,28 @@ header {
 
   font-weight:
     bold;
-
 }
 
 
 .logo h2 {
-
   margin:
     0;
-
 }
 
 
 .logo p {
-
   margin:
     3px 0 0;
 
   color:
     #718096;
-
 }
 
 
 
-.hero {
+/* HERO */
 
+.hero {
   max-width:
     1200px;
 
@@ -125,23 +114,19 @@ header {
 
   align-items:
     center;
-
 }
 
 
 .hero h1 {
-
   font-size:
     55px;
 
   margin:
     15px 0;
-
 }
 
 
 .hero-text p {
-
   font-size:
     18px;
 
@@ -150,12 +135,10 @@ header {
 
   max-width:
     650px;
-
 }
 
 
 .badge {
-
   background:
     #eaf3ff;
 
@@ -170,13 +153,13 @@ header {
 
   font-weight:
     bold;
-
 }
 
 
 
-.prediction-card {
+/* PREDICTION CARD */
 
+.prediction-card {
   background:
     linear-gradient(
       135deg,
@@ -196,23 +179,19 @@ header {
   box-shadow:
     0 20px 40px
     rgba(0,0,0,0.12);
-
 }
 
 
 .prediction-card h2 {
-
   font-size:
     55px;
 
   margin:
     10px 0;
-
 }
 
 
 .hero-info {
-
   display:
     flex;
 
@@ -221,12 +200,10 @@ header {
 
   margin-top:
     40px;
-
 }
 
 
 .hero-info span {
-
   display:
     block;
 
@@ -235,13 +212,13 @@ header {
 
   margin-bottom:
     5px;
-
 }
 
 
 
-main {
+/* MAIN */
 
+main {
   max-width:
     1200px;
 
@@ -250,14 +227,11 @@ main {
 
   padding:
     20px 30px 60px;
-
 }
-
 
 
 .main-card,
 .map-section {
-
   background:
     white;
 
@@ -270,22 +244,19 @@ main {
   box-shadow:
     0 10px 30px
     rgba(0,0,0,0.06);
-
 }
-
 
 
 .grey {
-
   color:
     #718096;
-
 }
 
 
 
-.controls {
+/* CONTROLS */
 
+.controls {
   display:
     grid;
 
@@ -297,12 +268,10 @@ main {
 
   margin-top:
     25px;
-
 }
 
 
 label {
-
   display:
     block;
 
@@ -314,13 +283,11 @@ label {
 
   margin-bottom:
     7px;
-
 }
 
 
 select,
 input {
-
   width:
     100%;
 
@@ -341,12 +308,22 @@ input {
 
   font-size:
     15px;
-
 }
 
 
 button {
+  border:
+    none;
 
+  cursor:
+    pointer;
+
+  font-weight:
+    bold;
+}
+
+
+#predictButton {
   align-self:
     end;
 
@@ -359,32 +336,21 @@ button {
   color:
     white;
 
-  border:
-    none;
-
   border-radius:
     10px;
-
-  font-weight:
-    bold;
-
-  cursor:
-    pointer;
-
 }
 
 
-button:hover {
-
+#predictButton:hover {
   background:
     #2563eb;
-
 }
 
 
 
-.dashboard {
+/* DASHBOARD */
 
+.dashboard {
   margin-top:
     30px;
 
@@ -396,13 +362,10 @@ button:hover {
 
   gap:
     20px;
-
 }
 
 
-
 .stats {
-
   display:
     grid;
 
@@ -411,12 +374,10 @@ button:hover {
 
   gap:
     15px;
-
 }
 
 
 .stat {
-
   border:
     1px solid #e5e7eb;
 
@@ -425,35 +386,31 @@ button:hover {
 
   border-radius:
     15px;
-
 }
 
 
 .stat p {
-
   color:
     #718096;
 
   margin:
     0;
-
 }
 
 
 .stat h2 {
-
   font-size:
     30px;
 
   margin:
     8px 0 0;
-
 }
 
 
 
-.occupancy-box {
+/* OCCUPANCY */
 
+.occupancy-box {
   margin-top:
     20px;
 
@@ -465,13 +422,10 @@ button:hover {
 
   border-radius:
     15px;
-
 }
 
 
-
 .status {
-
   display:
     inline-block;
 
@@ -483,46 +437,37 @@ button:hover {
 
   font-weight:
     bold;
-
 }
 
 
 .low {
-
   background:
     #dcfce7;
 
   color:
     #15803d;
-
 }
 
 
 .medium {
-
   background:
     #fef3c7;
 
   color:
     #b45309;
-
 }
 
 
 .high {
-
   background:
     #fee2e2;
 
   color:
     #b91c1c;
-
 }
 
 
-
 .progress {
-
   height:
     18px;
 
@@ -537,30 +482,25 @@ button:hover {
 
   overflow:
     hidden;
-
 }
 
 
 #progressBar {
-
   height:
     100%;
 
   width:
-    72%;
+    60%;
 
   background:
-    #ef4444;
+    #f59e0b;
 
   transition:
     0.4s;
-
 }
 
 
-
 .recommendation {
-
   margin-top:
     25px;
 
@@ -572,13 +512,13 @@ button:hover {
 
   border-radius:
     15px;
-
 }
 
 
 
-.route-box {
+/* ROUTE BOX */
 
+.route-box {
   border:
     1px solid #e5e7eb;
 
@@ -589,97 +529,143 @@ button:hover {
     25px;
 
   max-height:
-    600px;
+    620px;
 
   overflow-y:
     auto;
-
 }
 
 
 
-.stop {
+/* SEARCH */
 
-  border-left:
-    3px solid #bfdbfe;
+.search-box {
+  display:
+    flex;
 
-  padding:
-    5px 10px 22px 20px;
+  gap:
+    10px;
 
-  position:
-    relative;
-
+  margin-bottom:
+    20px;
 }
 
 
-.stop::before {
+.search-box input {
+  flex:
+    1;
+}
 
-  content:
-    "";
 
-  position:
-    absolute;
-
-  left:
-    -7px;
-
-  top:
-    7px;
-
+#searchButton {
   width:
-    10px;
-
-  height:
-    10px;
-
-  border-radius:
-    50%;
+    100px;
 
   background:
-    #3b82f6;
+    #172033;
 
+  color:
+    white;
+
+  border-radius:
+    10px;
 }
 
 
-.stop.active {
+#searchButton:hover {
+  background:
+    #303c54;
+}
+
+
+
+/* STOP BUTTONS */
+
+.stop-buttons {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    10px;
+}
+
+
+.stop-button {
+  width:
+    100%;
+
+  min-height:
+    48px;
+
+  padding:
+    12px 15px;
+
+  background:
+    #f8fafc;
+
+  color:
+    #172033;
+
+  border:
+    1px solid #dbe3ee;
+
+  border-radius:
+    10px;
+
+  text-align:
+    left;
+
+  font-size:
+    14px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    0.2s;
+}
+
+
+.stop-button:hover {
+  background:
+    #eaf3ff;
+
+  border-color:
+    #3b82f6;
 
   color:
     #2563eb;
-
-  font-weight:
-    bold;
-
 }
 
 
-.stop.active::before {
-
-  width:
-    14px;
-
-  height:
-    14px;
-
-  left:
-    -9px;
-
+.stop-button.active {
   background:
-    #2563eb;
+    #3b82f6;
 
+  border-color:
+    #3b82f6;
+
+  color:
+    white;
 }
 
 
+
+/* MAP */
 
 .map-section {
-
   margin-top:
     30px;
-
 }
 
 
 #map {
-
   width:
     100%;
 
@@ -694,13 +680,13 @@ button:hover {
 
   overflow:
     hidden;
-
 }
 
 
 
-footer {
+/* FOOTER */
 
+footer {
   text-align:
     center;
 
@@ -709,65 +695,59 @@ footer {
 
   color:
     #718096;
-
 }
 
 
+
+/* MOBILE */
 
 @media
 (max-width: 850px) {
 
   .hero {
-
     grid-template-columns:
       1fr;
-
   }
-
 
   .controls {
-
     grid-template-columns:
       1fr 1fr;
-
   }
 
-
   .dashboard {
-
     grid-template-columns:
       1fr;
-
   }
 
 }
-
 
 
 @media
 (max-width: 550px) {
 
   .controls {
-
     grid-template-columns:
       1fr;
-
   }
-
 
   .stats {
-
     grid-template-columns:
       1fr;
-
   }
 
-
   .hero h1 {
-
     font-size:
       40px;
+  }
 
+  .search-box {
+    flex-direction:
+      column;
+  }
+
+  #searchButton {
+    width:
+      100%;
   }
 
 }
