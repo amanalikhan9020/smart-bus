@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>SmartBus Astana</title>
@@ -12,9 +15,11 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   >
+
 </head>
 
 <body>
+
 
 <header>
 
@@ -39,6 +44,7 @@
   </div>
 
 </header>
+
 
 
 <section class="hero">
@@ -68,11 +74,11 @@
     </p>
 
     <h2 id="heroPercent">
-      72%
+      60%
     </h2>
 
     <h3 id="heroStatus">
-      High occupancy
+      Medium occupancy
     </h3>
 
 
@@ -112,6 +118,7 @@
 
 
 <main>
+
 
 <section class="main-card">
 
@@ -201,6 +208,7 @@
 
   <div class="dashboard">
 
+
     <div class="left">
 
 
@@ -214,7 +222,7 @@
           </p>
 
           <h2 id="percent">
-            72%
+            60%
           </h2>
 
         </div>
@@ -227,7 +235,7 @@
           </p>
 
           <h2 id="passengers">
-            72
+            60
           </h2>
 
         </div>
@@ -259,9 +267,9 @@
 
         <span
           id="status"
-          class="status high"
+          class="status medium"
         >
-          High
+          Medium
         </span>
 
 
@@ -277,7 +285,7 @@
           id="contextText"
           class="grey"
         >
-          Evening peak increases passenger demand.
+          Normal traffic period.
         </p>
 
 
@@ -289,11 +297,11 @@
           </p>
 
           <h3 id="recommendation">
-            Wait for the next bus if possible.
+            You can take this bus.
           </h3>
 
           <p id="recommendationDetail">
-            The next bus may be less crowded.
+            The bus may be moderately crowded.
           </p>
 
         </div>
@@ -310,13 +318,32 @@
         Route Stops
       </h2>
 
-      <div id="routeStops">
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="stopSearch"
+          placeholder="Search stop..."
+        >
+
+        <button id="searchButton">
+          Search
+        </button>
+
+      </div>
+
+
+      <div
+        id="routeStops"
+        class="stop-buttons"
+      >
       </div>
 
     </div>
 
-  </div>
 
+  </div>
 
 </section>
 
@@ -329,7 +356,7 @@
   </h2>
 
   <p class="grey">
-    The selected stop is highlighted on the map.
+    Click a stop to move the map.
   </p>
 
   <div id="map">
@@ -343,10 +370,9 @@
 
 
 <footer>
-
   SmartBus Astana • ICT / IoT Project
-
 </footer>
+
 
 
 <script
@@ -355,6 +381,7 @@
 
 <script src="script.js">
 </script>
+
 
 </body>
 </html>
