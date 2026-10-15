@@ -21,13 +21,6 @@ const routes = {
       },
 
       {
-        name: "Улица Ильяса Есенберлина",
-        lat: 51.183,
-        lng: 71.421,
-        factor: 0.42
-      },
-
-      {
         name: "Агротехнический университет",
         lat: 51.174,
         lng: 71.421,
@@ -86,7 +79,6 @@ const routes = {
     ]
 
   },
-
 
 
   "21": {
@@ -159,13 +151,6 @@ const routes = {
       },
 
       {
-        name: "Haileybury Astana",
-        lat: 51.105,
-        lng: 71.449,
-        factor: 0.44
-      },
-
-      {
         name: "Мангилик Ел",
         lat: 51.101,
         lng: 71.437,
@@ -182,7 +167,6 @@ const routes = {
     ]
 
   },
-
 
 
   "26": {
@@ -280,7 +264,6 @@ const routes = {
   },
 
 
-
   "40": {
 
     capacity: 110,
@@ -376,7 +359,6 @@ const routes = {
   },
 
 
-
   "44": {
 
     capacity: 98,
@@ -470,7 +452,6 @@ const routes = {
     ]
 
   },
-
 
 
   "50": {
@@ -572,40 +553,46 @@ const routes = {
 
 
 const routeSelect =
-document.getElementById("route");
+  document.getElementById("route");
 
 const stopSelect =
-document.getElementById("stop");
+  document.getElementById("stop");
 
 const timeInput =
-document.getElementById("time");
+  document.getElementById("time");
+
+const stopSearch =
+  document.getElementById("stopSearch");
+
+const searchButton =
+  document.getElementById("searchButton");
+
+const routeStops =
+  document.getElementById("routeStops");
 
 
 
 const map =
-L.map("map")
-.setView(
-  [51.145,71.430],
-  11
-);
+  L.map("map")
+  .setView(
+    [51.145, 71.430],
+    11
+  );
 
 
 L.tileLayer(
-
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-
   {
 
     attribution:
-    "&copy; OpenStreetMap contributors"
+      "&copy; OpenStreetMap contributors"
 
   }
-
 ).addTo(map);
 
 
 
-let stopMarkers = [];
+let markers = [];
 
 let routeLine = null;
 
@@ -613,7 +600,7 @@ let routeLine = null;
 
 function clearMap() {
 
-  stopMarkers.forEach(
+  markers.forEach(
     marker => {
 
       map.removeLayer(marker);
@@ -622,7 +609,7 @@ function clearMap() {
   );
 
 
-  stopMarkers = [];
+  markers = [];
 
 
   if (routeLine) {
@@ -635,21 +622,204 @@ function clearMap() {
 
 
 
-function drawRoute() {
+function loadStops() {
+
+  const route =
+    routes[routeSelect.value];
+
+
+  stopSelect.innerHTML =
+    "";
+
+
+  route.stops.forEach(
+    (stop, index) => {
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        index;
+
+
+      option.textContent =
+        stop.name;
+
+
+      stopSelect.appendChild(
+        option
+      );
+
+
+    }
+  );
+
+
+  stopSearch.value =
+    "";
+
+
+  showStopButtons();
+
+
+  drawMap();
+
+
+  calculatePrediction();
+
+}
+
+
+
+function showStopButtons() {
+
+  const route =
+    routes[routeSelect.value];
+
+
+  const selectedIndex =
+    Number(stopSelect.value);
+
+
+  const text =
+    stopSearch.value
+    .toLowerCase()
+    .trim();
+
+
+  routeStops.innerHTML =
+    "";
+
+
+  let found =
+    false;
+
+
+  route.stops.forEach(
+    (stop, index) => {
+
+
+      if (
+        text !== "" &&
+        !stop.name
+        .toLowerCase()
+        .includes(text)
+      ) {
+
+        return;
+
+      }
+
+
+      found =
+        true;
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.type =
+        "button";
+
+
+      button.className =
+        "stop-button";
+
+
+      if (
+        index ===
+        selectedIndex
+      ) {
+
+        button.classList.add(
+          "active"
+        );
+
+      }
+
+
+      button.textContent =
+        `${index + 1}. ${stop.name}`;
+
+
+      button.addEventListener(
+        "click",
+        function() {
+
+
+          stopSelect.value =
+            index;
+
+
+          calculatePrediction();
+
+
+          showStopButtons();
+
+
+        }
+      );
+
+
+      routeStops.appendChild(
+        button
+      );
+
+
+    }
+  );
+
+
+  if (!found) {
+
+
+    const message =
+      document.createElement(
+        "p"
+      );
+
+
+    message.textContent =
+      "No stops found.";
+
+
+    message.className =
+      "grey";
+
+
+    routeStops.appendChild(
+      message
+    );
+
+
+  }
+
+}
+
+
+
+function drawMap() {
 
   clearMap();
 
 
   const route =
-  routes[routeSelect.value];
+    routes[routeSelect.value];
 
 
-  const coordinates = [];
+  const coordinates =
+    [];
 
 
   route.stops.forEach(
-
-    (stop,index) => {
+    (stop, index) => {
 
 
       coordinates.push(
@@ -661,19 +831,23 @@ function drawRoute() {
 
 
       const marker =
-      L.marker(
-        [
-          stop.lat,
-          stop.lng
-        ]
-      )
-      .addTo(map)
-      .bindPopup(
+        L.marker(
+          [
+            stop.lat,
+            stop.lng
+          ]
+        )
+        .addTo(map);
+
+
+      marker.bindPopup(
         `
         <strong>
-        ${stop.name}
+          ${stop.name}
         </strong>
+
         <br>
+
         Bus ${routeSelect.value}
         `
       );
@@ -683,88 +857,47 @@ function drawRoute() {
         "click",
         function() {
 
+
           stopSelect.value =
-          index;
+            index;
+
 
           calculatePrediction();
+
+
+          showStopButtons();
+
 
         }
       );
 
 
-      stopMarkers.push(
+      markers.push(
         marker
       );
 
-    }
 
+    }
   );
 
 
   routeLine =
-  L.polyline(
-    coordinates,
-    {
-      weight: 5
-    }
-  )
-  .addTo(map);
+    L.polyline(
+      coordinates,
+      {
+        weight: 5
+      }
+    )
+    .addTo(map);
 
 
   map.fitBounds(
     routeLine.getBounds(),
     {
       padding:
-      [30,30]
+        [30,30]
     }
   );
-
-}
-
-
-
-function loadStops() {
-
-  const route =
-  routes[
-    routeSelect.value
-  ];
-
-
-  stopSelect.innerHTML =
-  "";
-
-
-  route.stops.forEach(
-
-    (stop,index) => {
-
-      const option =
-      document.createElement(
-        "option"
-      );
-
-
-      option.value =
-      index;
-
-
-      option.textContent =
-      stop.name;
-
-
-      stopSelect.appendChild(
-        option
-      );
-
-    }
-
-  );
-
-
-  drawRoute();
-
-  calculatePrediction();
 
 }
 
@@ -780,7 +913,7 @@ function getTimeFactor(
     hour < 9
   ) {
 
-    return 0.27;
+    return 0.25;
 
   }
 
@@ -790,7 +923,7 @@ function getTimeFactor(
     hour < 20
   ) {
 
-    return 0.32;
+    return 0.30;
 
   }
 
@@ -800,7 +933,7 @@ function getTimeFactor(
     hour < 14
   ) {
 
-    return 0.14;
+    return 0.12;
 
   }
 
@@ -825,141 +958,89 @@ function calculatePrediction() {
 
 
   const routeNumber =
-  routeSelect.value;
+    routeSelect.value;
 
 
   const route =
-  routes[
-    routeNumber
-  ];
+    routes[routeNumber];
 
 
   const stopIndex =
-  Number(
-    stopSelect.value
-  );
+    Number(stopSelect.value);
 
 
   const stop =
-  route.stops[
-    stopIndex
-  ];
+    route.stops[stopIndex];
+
+
+  if (!stop) {
+
+    return;
+
+  }
 
 
   const time =
-  timeInput.value;
+    timeInput.value;
 
 
   const parts =
-  time.split(":");
+    time.split(":");
 
 
   const hour =
-  Number(parts[0]) +
-  Number(parts[1]) / 60;
+    Number(parts[0]) +
+    Number(parts[1]) / 60;
 
 
   const timeFactor =
-  getTimeFactor(
-    hour
-  );
+    getTimeFactor(hour);
 
 
   const variation =
-  Math.sin(
-    stopIndex * 1.31 +
-    hour * 0.7
-  ) * 0.05;
+    Math.sin(
+      stopIndex * 1.35 +
+      hour
+    ) * 0.05;
 
 
   let occupancy =
 
-  20 +
+    20 +
 
-  stop.factor * 60 +
+    stop.factor * 60 +
 
-  timeFactor * 70 +
+    timeFactor * 70 +
 
-  variation * 100;
-
-
-  occupancy =
-  Math.round(
-    occupancy
-  );
+    variation * 100;
 
 
   occupancy =
-  Math.max(
-    15,
-    Math.min(
-      96,
+    Math.round(
       occupancy
-    )
-  );
+    );
+
+
+  occupancy =
+    Math.max(
+      15,
+      Math.min(
+        occupancy,
+        96
+      )
+    );
 
 
   const passengers =
-  Math.round(
+    Math.round(
 
-    route.capacity *
+      route.capacity *
 
-    occupancy /
+      occupancy /
 
-    100
+      100
 
-  );
-
-
-  updateInterface(
-
-    occupancy,
-
-    passengers,
-
-    route,
-
-    stop,
-
-    routeNumber,
-
-    hour
-
-  );
-
-
-  showRouteStops(
-
-    route,
-
-    stopIndex
-
-  );
-
-
-  focusStop(
-    stop
-  );
-
-}
-
-
-
-function updateInterface(
-
-  occupancy,
-
-  passengers,
-
-  route,
-
-  stop,
-
-  routeNumber,
-
-  hour
-
-) {
+    );
 
 
   document
@@ -967,7 +1048,7 @@ function updateInterface(
     "percent"
   )
   .textContent =
-  occupancy + "%";
+    occupancy + "%";
 
 
   document
@@ -975,7 +1056,7 @@ function updateInterface(
     "passengers"
   )
   .textContent =
-  passengers;
+    passengers;
 
 
   document
@@ -983,7 +1064,7 @@ function updateInterface(
     "capacity"
   )
   .textContent =
-  route.capacity;
+    route.capacity;
 
 
   document
@@ -991,7 +1072,7 @@ function updateInterface(
     "heroPercent"
   )
   .textContent =
-  occupancy + "%";
+    occupancy + "%";
 
 
   document
@@ -999,28 +1080,23 @@ function updateInterface(
     "heroRoute"
   )
   .textContent =
-  "Bus " +
-  routeNumber;
-
+    "Bus " + routeNumber;
 
 
   const status =
-  document
-  .getElementById(
-    "status"
-  );
+    document.getElementById(
+      "status"
+    );
 
 
   const progress =
-  document
-  .getElementById(
-    "progressBar"
-  );
+    document.getElementById(
+      "progressBar"
+    );
 
 
   let nextBus =
-  8;
-
+    8;
 
 
   if (
@@ -1029,15 +1105,15 @@ function updateInterface(
 
 
     status.textContent =
-    "Low";
+      "Low";
 
 
     status.className =
-    "status low";
+      "status low";
 
 
     progress.style.background =
-    "#22c55e";
+      "#22c55e";
 
 
     document
@@ -1045,7 +1121,7 @@ function updateInterface(
       "heroStatus"
     )
     .textContent =
-    "Low occupancy";
+      "Low occupancy";
 
 
     document
@@ -1053,7 +1129,7 @@ function updateInterface(
       "recommendation"
     )
     .textContent =
-    "Take this bus.";
+      "Take this bus.";
 
 
     document
@@ -1061,10 +1137,10 @@ function updateInterface(
       "recommendationDetail"
     )
     .textContent =
-    "The bus is expected to have enough free space.";
+      "The bus is expected to have enough free space.";
+
 
   }
-
 
 
   else if (
@@ -1073,15 +1149,15 @@ function updateInterface(
 
 
     status.textContent =
-    "Medium";
+      "Medium";
 
 
     status.className =
-    "status medium";
+      "status medium";
 
 
     progress.style.background =
-    "#f59e0b";
+      "#f59e0b";
 
 
     document
@@ -1089,7 +1165,7 @@ function updateInterface(
       "heroStatus"
     )
     .textContent =
-    "Medium occupancy";
+      "Medium occupancy";
 
 
     document
@@ -1097,7 +1173,7 @@ function updateInterface(
       "recommendation"
     )
     .textContent =
-    "You can take this bus.";
+      "You can take this bus.";
 
 
     document
@@ -1105,25 +1181,25 @@ function updateInterface(
       "recommendationDetail"
     )
     .textContent =
-    "The bus may be moderately crowded.";
+      "The bus may be moderately crowded.";
+
 
   }
-
 
 
   else {
 
 
     status.textContent =
-    "High";
+      "High";
 
 
     status.className =
-    "status high";
+      "status high";
 
 
     progress.style.background =
-    "#ef4444";
+      "#ef4444";
 
 
     document
@@ -1131,7 +1207,7 @@ function updateInterface(
       "heroStatus"
     )
     .textContent =
-    "High occupancy";
+      "High occupancy";
 
 
     document
@@ -1139,7 +1215,7 @@ function updateInterface(
       "recommendation"
     )
     .textContent =
-    "Wait for the next bus if possible.";
+      "Wait for the next bus if possible.";
 
 
     document
@@ -1147,17 +1223,18 @@ function updateInterface(
       "recommendationDetail"
     )
     .textContent =
-    "The next bus may be less crowded.";
+      "The next bus may be less crowded.";
 
 
     nextBus =
-    6;
+      6;
+
 
   }
 
 
   progress.style.width =
-  occupancy + "%";
+    occupancy + "%";
 
 
   document
@@ -1165,12 +1242,11 @@ function updateInterface(
     "heroNext"
   )
   .textContent =
-  nextBus + " min";
-
+    nextBus + " min";
 
 
   let context =
-  "Normal traffic period.";
+    "Normal traffic period.";
 
 
   if (
@@ -1179,7 +1255,7 @@ function updateInterface(
   ) {
 
     context =
-    "Morning peak increases expected passenger demand.";
+      "Morning peak increases passenger demand.";
 
   }
 
@@ -1190,7 +1266,7 @@ function updateInterface(
   ) {
 
     context =
-    "Evening peak increases expected passenger demand.";
+      "Evening peak increases passenger demand.";
 
   }
 
@@ -1200,95 +1276,7 @@ function updateInterface(
     "contextText"
   )
   .textContent =
-  context;
-
-}
-
-
-
-function showRouteStops(
-
-  route,
-
-  activeStop
-
-) {
-
-
-  const container =
-  document.getElementById(
-    "routeStops"
-  );
-
-
-  container.innerHTML =
-  "";
-
-
-  route.stops.forEach(
-
-    (stop,index) => {
-
-
-      const div =
-      document.createElement(
-        "div"
-      );
-
-
-      div.className =
-      "stop";
-
-
-      if (
-        index ===
-        activeStop
-      ) {
-
-        div.classList.add(
-          "active"
-        );
-
-      }
-
-
-      div.innerHTML =
-      `
-      <strong>
-      ${index + 1}.
-      ${stop.name}
-      </strong>
-      `;
-
-
-      div.onclick =
-      function() {
-
-
-        stopSelect.value =
-        index;
-
-
-        calculatePrediction();
-
-      };
-
-
-      container.appendChild(
-        div
-      );
-
-    }
-
-  );
-
-}
-
-
-
-function focusStop(
-  stop
-) {
+    context;
 
 
   map.flyTo(
@@ -1301,45 +1289,96 @@ function focusStop(
     14,
 
     {
-
       duration:
-      1
-
+        1
     }
 
   );
+
+
+  showStopButtons();
 
 }
 
 
 
-routeSelect
-.addEventListener(
+function searchStop() {
 
+
+  const route =
+    routes[routeSelect.value];
+
+
+  const text =
+    stopSearch.value
+    .toLowerCase()
+    .trim();
+
+
+  if (
+    text === ""
+  ) {
+
+
+    showStopButtons();
+
+
+    return;
+
+
+  }
+
+
+  const index =
+    route.stops.findIndex(
+      stop =>
+        stop.name
+        .toLowerCase()
+        .includes(text)
+    );
+
+
+  if (
+    index === -1
+  ) {
+
+
+    alert(
+      "Stop not found."
+    );
+
+
+    return;
+
+
+  }
+
+
+  stopSelect.value =
+    index;
+
+
+  calculatePrediction();
+
+}
+
+
+
+routeSelect.addEventListener(
   "change",
-
   loadStops
-
 );
 
 
-stopSelect
-.addEventListener(
-
+stopSelect.addEventListener(
   "change",
-
   calculatePrediction
-
 );
 
 
-timeInput
-.addEventListener(
-
+timeInput.addEventListener(
   "change",
-
   calculatePrediction
-
 );
 
 
@@ -1348,11 +1387,40 @@ document
   "predictButton"
 )
 .addEventListener(
-
   "click",
-
   calculatePrediction
+);
 
+
+searchButton.addEventListener(
+  "click",
+  searchStop
+);
+
+
+stopSearch.addEventListener(
+  "input",
+  showStopButtons
+);
+
+
+stopSearch.addEventListener(
+  "keydown",
+  function(event) {
+
+
+    if (
+      event.key === "Enter"
+    ) {
+
+
+      searchStop();
+
+
+    }
+
+
+  }
 );
 
 
