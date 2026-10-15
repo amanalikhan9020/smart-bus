@@ -17,14 +17,27 @@
 <body>
 
 <header>
+
   <div class="logo">
-    <div class="logo-box">SB</div>
+
+    <div class="logo-box">
+      SB
+    </div>
 
     <div>
-      <h2>SmartBus Astana</h2>
-      <p>AI Bus Occupancy Prediction</p>
+
+      <h2>
+        SmartBus Astana
+      </h2>
+
+      <p>
+        AI Bus Occupancy Prediction
+      </p>
+
     </div>
+
   </div>
+
 </header>
 
 
@@ -50,9 +63,13 @@
 
   <div class="prediction-card">
 
-    <p>Current prediction</p>
+    <p>
+      Current prediction
+    </p>
 
-    <h2 id="heroPercent">72%</h2>
+    <h2 id="heroPercent">
+      72%
+    </h2>
 
     <h3 id="heroStatus">
       High occupancy
@@ -62,17 +79,28 @@
     <div class="hero-info">
 
       <div>
-        <span>Route</span>
+
+        <span>
+          Route
+        </span>
+
         <strong id="heroRoute">
           Bus 10
         </strong>
+
       </div>
 
+
       <div>
-        <span>Next bus</span>
+
+        <span>
+          Next bus
+        </span>
+
         <strong id="heroNext">
           8 min
         </strong>
+
       </div>
 
     </div>
@@ -82,11 +110,14 @@
 </section>
 
 
+
 <main>
 
 <section class="main-card">
 
-  <h2>Trip Prediction</h2>
+  <h2>
+    Trip Prediction
+  </h2>
 
   <p class="grey">
     Select your route, stop and departure time.
@@ -95,36 +126,68 @@
 
   <div class="controls">
 
+
     <div>
-      <label>Route</label>
+
+      <label>
+        Route
+      </label>
 
       <select id="route">
-        <option value="10">Bus 10</option>
-        <option value="21">Bus 21</option>
-        <option value="26">Bus 26</option>
-        <option value="40">Bus 40</option>
-        <option value="44">Bus 44</option>
-        <option value="50">Bus 50</option>
+
+        <option value="10">
+          Bus 10
+        </option>
+
+        <option value="21">
+          Bus 21
+        </option>
+
+        <option value="26">
+          Bus 26
+        </option>
+
+        <option value="40">
+          Bus 40
+        </option>
+
+        <option value="44">
+          Bus 44
+        </option>
+
+        <option value="50">
+          Bus 50
+        </option>
+
       </select>
+
     </div>
 
 
     <div>
-      <label>Stop</label>
+
+      <label>
+        Stop
+      </label>
 
       <select id="stop">
       </select>
+
     </div>
 
 
     <div>
-      <label>Time</label>
+
+      <label>
+        Time
+      </label>
 
       <input
         type="time"
         id="time"
         value="18:00"
       >
+
     </div>
 
 
@@ -135,33 +198,64 @@
   </div>
 
 
+
   <div class="dashboard">
 
     <div class="left">
 
+
       <div class="stats">
 
-        <div class="stat">
-          <p>Predicted occupancy</p>
-          <h2 id="percent">72%</h2>
-        </div>
 
         <div class="stat">
-          <p>Passengers</p>
-          <h2 id="passengers">72</h2>
+
+          <p>
+            Predicted occupancy
+          </p>
+
+          <h2 id="percent">
+            72%
+          </h2>
+
         </div>
 
+
         <div class="stat">
-          <p>Bus capacity</p>
-          <h2 id="capacity">100</h2>
+
+          <p>
+            Passengers
+          </p>
+
+          <h2 id="passengers">
+            72
+          </h2>
+
         </div>
+
+
+        <div class="stat">
+
+          <p>
+            Bus capacity
+          </p>
+
+          <h2 id="capacity">
+            100
+          </h2>
+
+        </div>
+
 
       </div>
 
 
+
       <div class="occupancy-box">
 
-        <p>Occupancy level</p>
+        <p>
+          Occupancy level
+        </p>
+
 
         <span
           id="status"
@@ -172,7 +266,10 @@
 
 
         <div class="progress">
-          <div id="progressBar"></div>
+
+          <div id="progressBar">
+          </div>
+
         </div>
 
 
@@ -184,9 +281,12 @@
         </p>
 
 
+
         <div class="recommendation">
 
-          <p>Recommendation</p>
+          <p>
+            Recommendation
+          </p>
 
           <h3 id="recommendation">
             Wait for the next bus if possible.
@@ -203,50 +303,49 @@
     </div>
 
 
+
     <div class="route-box">
 
-      <h2>Route Stops</h2>
+      <h2>
+        Route Stops
+      </h2>
 
-      <div class="search-box">
-
-        <input
-          type="text"
-          id="stopSearch"
-          placeholder="Search stop..."
-        >
-
-        <button id="searchButton">
-          Search
-        </button>
-
+      <div id="routeStops">
       </div>
-
-      <div id="routeStops"></div>
 
     </div>
 
   </div>
 
+
 </section>
+
 
 
 <section class="map-section">
 
-  <h2>Route Map</h2>
+  <h2>
+    Route Map
+  </h2>
 
   <p class="grey">
     The selected stop is highlighted on the map.
   </p>
 
-  <div id="map"></div>
+  <div id="map">
+  </div>
 
 </section>
+
 
 </main>
 
 
+
 <footer>
+
   SmartBus Astana • ICT / IoT Project
+
 </footer>
 
 
@@ -254,7 +353,8 @@
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
 
-<script src="script.js"></script>
+<script src="script.js">
+</script>
 
 </body>
 </html>
