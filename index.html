@@ -3,230 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SmartBus Astana</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="logo-box">SB</div>
+<header>
+  <div class="logo">
+    <div class="logo-box">SB</div>
+
+    <div>
+      <h2>SmartBus Astana</h2>
+      <p>AI Bus Occupancy Prediction</p>
+    </div>
+  </div>
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <span class="badge">
+      Astana • Public Transport • AI Prediction
+    </span>
+
+    <h1>
+      Know how crowded your bus will be.
+    </h1>
+
+    <p>
+      SmartBus predicts bus occupancy based on route,
+      stop and time of day.
+    </p>
+
+  </div>
+
+
+  <div class="prediction-card">
+
+    <p>Current prediction</p>
+
+    <h2 id="heroPercent">72%</h2>
+
+    <h3 id="heroStatus">
+      High occupancy
+    </h3>
+
+
+    <div class="hero-info">
+
       <div>
-        <h2>SmartBus Astana</h2>
-        <p>AI Occupancy Prediction</p>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-text">
-      <span class="badge">Astana • Public Transport • AI Prediction</span>
-
-      <h1>Know how crowded your bus will be.</h1>
-
-      <p>
-        SmartBus predicts bus occupancy based on route,
-        stop, time of day and passenger demand.
-      </p>
-    </div>
-
-    <div class="prediction-card">
-      <p>Current prediction</p>
-
-      <h2 id="heroPercent">72%</h2>
-
-      <h3 id="heroStatus">High occupancy</h3>
-
-      <div class="hero-info">
-        <div>
-          <span>Route</span>
-          <strong id="heroRoute">Bus 26</strong>
-        </div>
-
-        <div>
-          <span>Next bus</span>
-          <strong id="heroNext">8 min</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <main>
-
-    <section class="main-card">
-
-      <h2>Trip Prediction</h2>
-      <p class="grey">Choose route, stop and time.</p>
-
-      <div class="controls">
-
-        <div>
-          <label>Route</label>
-
-          <select id="route">
-            <option value="10">Bus 10</option>
-            <option value="12">Bus 12</option>
-            <option value="21">Bus 21</option>
-            <option value="26" selected>Bus 26</option>
-            <option value="40">Bus 40</option>
-            <option value="44">Bus 44</option>
-            <option value="50">Bus 50</option>
-          </select>
-        </div>
-
-
-        <div>
-          <label>Stop</label>
-          <select id="stop"></select>
-        </div>
-
-
-        <div>
-          <label>Time</label>
-
-          <select id="time">
-            <option value="05:00">05:00</option>
-            <option value="05:30">05:30</option>
-            <option value="06:00">06:00</option>
-            <option value="06:30">06:30</option>
-            <option value="07:00">07:00</option>
-            <option value="07:30">07:30</option>
-            <option value="08:00">08:00</option>
-            <option value="08:30">08:30</option>
-            <option value="09:00">09:00</option>
-            <option value="09:30">09:30</option>
-            <option value="10:00">10:00</option>
-            <option value="10:30">10:30</option>
-            <option value="11:00">11:00</option>
-            <option value="11:30">11:30</option>
-            <option value="12:00">12:00</option>
-            <option value="12:30">12:30</option>
-            <option value="13:00">13:00</option>
-            <option value="13:30">13:30</option>
-            <option value="14:00">14:00</option>
-            <option value="14:30">14:30</option>
-            <option value="15:00">15:00</option>
-            <option value="15:30">15:30</option>
-            <option value="16:00">16:00</option>
-            <option value="16:30">16:30</option>
-            <option value="17:00">17:00</option>
-            <option value="17:30">17:30</option>
-            <option value="18:00" selected>18:00</option>
-            <option value="18:30">18:30</option>
-            <option value="19:00">19:00</option>
-            <option value="19:30">19:30</option>
-            <option value="20:00">20:00</option>
-            <option value="20:30">20:30</option>
-            <option value="21:00">21:00</option>
-            <option value="21:30">21:30</option>
-            <option value="22:00">22:00</option>
-            <option value="22:30">22:30</option>
-            <option value="23:00">23:00</option>
-          </select>
-        </div>
-
-
-        <button id="predictButton">
-          Predict Occupancy
-        </button>
-
+        <span>Route</span>
+        <strong id="heroRoute">
+          Bus 10
+        </strong>
       </div>
 
+      <div>
+        <span>Next bus</span>
+        <strong id="heroNext">
+          8 min
+        </strong>
+      </div>
 
-      <div class="dashboard">
+    </div>
 
-        <div class="left">
+  </div>
 
-          <div class="stats">
-
-            <div class="stat">
-              <p>Predicted occupancy</p>
-              <h2 id="percent">72%</h2>
-            </div>
-
-            <div class="stat">
-              <p>Passengers</p>
-              <h2 id="passengers">76</h2>
-            </div>
-
-            <div class="stat">
-              <p>Bus capacity</p>
-              <h2 id="capacity">105</h2>
-            </div>
-
-          </div>
+</section>
 
 
-          <div class="occupancy-box">
+<main>
 
-            <p>Occupancy level</p>
+<section class="main-card">
 
-            <span id="status" class="status high">
-              High
-            </span>
+  <h2>Trip Prediction</h2>
 
-            <div class="progress">
-              <div id="progressBar"></div>
-            </div>
-
-            <p id="contextText" class="grey">
-              Evening peak affects passenger demand.
-            </p>
+  <p class="grey">
+    Select your route, stop and departure time.
+  </p>
 
 
-            <div class="recommendation">
+  <div class="controls">
 
-              <p>Recommendation</p>
+    <div>
+      <label>Route</label>
 
-              <h3 id="recommendation">
-                Wait for the next bus if possible.
-              </h3>
-
-              <p id="recommendationDetail">
-                The next bus is expected to be less crowded.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
+      <select id="route">
+        <option value="10">Bus 10</option>
+        <option value="21">Bus 21</option>
+        <option value="26">Bus 26</option>
+        <option value="40">Bus 40</option>
+        <option value="44">Bus 44</option>
+        <option value="50">Bus 50</option>
+      </select>
+    </div>
 
 
-  <div class="route-box">
+    <div>
+      <label>Stop</label>
 
-  <h2>
-    Route Stops
-  </h2>
+      <select id="stop">
+      </select>
+    </div>
 
-  <div class="search-box">
 
-    <input
-      type="text"
-      id="stopSearch"
-      placeholder="Search stop..."
-    >
+    <div>
+      <label>Time</label>
 
-    <button id="searchButton">
-      Search
+      <input
+        type="time"
+        id="time"
+        value="18:00"
+      >
+    </div>
+
+
+    <button id="predictButton">
+      Predict Occupancy
     </button>
 
   </div>
 
-  <div id="routeStops">
+
+  <div class="dashboard">
+
+    <div class="left">
+
+      <div class="stats">
+
+        <div class="stat">
+          <p>Predicted occupancy</p>
+          <h2 id="percent">72%</h2>
+        </div>
+
+        <div class="stat">
+          <p>Passengers</p>
+          <h2 id="passengers">72</h2>
+        </div>
+
+        <div class="stat">
+          <p>Bus capacity</p>
+          <h2 id="capacity">100</h2>
+        </div>
+
+      </div>
+
+
+      <div class="occupancy-box">
+
+        <p>Occupancy level</p>
+
+        <span
+          id="status"
+          class="status high"
+        >
+          High
+        </span>
+
+
+        <div class="progress">
+          <div id="progressBar"></div>
+        </div>
+
+
+        <p
+          id="contextText"
+          class="grey"
+        >
+          Evening peak increases passenger demand.
+        </p>
+
+
+        <div class="recommendation">
+
+          <p>Recommendation</p>
+
+          <h3 id="recommendation">
+            Wait for the next bus if possible.
+          </h3>
+
+          <p id="recommendationDetail">
+            The next bus may be less crowded.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="route-box">
+
+      <h2>Route Stops</h2>
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="stopSearch"
+          placeholder="Search stop..."
+        >
+
+        <button id="searchButton">
+          Search
+        </button>
+
+      </div>
+
+      <div id="routeStops"></div>
+
+    </div>
+
   </div>
 
-</div>
-
-    </section>
-
-  </main>
+</section>
 
 
-  <script src="script.js"></script>
+<section class="map-section">
+
+  <h2>Route Map</h2>
+
+  <p class="grey">
+    The selected stop is highlighted on the map.
+  </p>
+
+  <div id="map"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+  SmartBus Astana • ICT / IoT Project
+</footer>
+
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script src="script.js"></script>
 
 </body>
 </html>
