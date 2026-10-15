@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>SmartBus Astana</title>
@@ -15,98 +12,60 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   >
-
 </head>
 
 <body>
 
+<header class="header">
+  <div class="logo-box">SB</div>
 
-<header>
-
-  <div class="logo">
-
-    <div class="logo-box">
-      SB
-    </div>
-
-    <div>
-
-      <h2>
-        SmartBus Astana
-      </h2>
-
-      <p>
-        AI Bus Occupancy Prediction
-      </p>
-
-    </div>
-
+  <div>
+    <h2>SmartBus Astana</h2>
+    <p>AI Bus Occupancy Prediction</p>
   </div>
-
 </header>
-
 
 
 <section class="hero">
 
-  <div class="hero-text">
+  <div class="hero-left">
 
-    <span class="badge">
+    <div class="badge">
       Astana • Public Transport • AI Prediction
-    </span>
+    </div>
 
     <h1>
       Know how crowded your bus will be.
     </h1>
 
     <p>
-      SmartBus predicts bus occupancy based on route,
-      stop and time of day.
+      SmartBus predicts expected bus occupancy using
+      route, stop and time of day.
     </p>
 
   </div>
 
 
-  <div class="prediction-card">
+  <div class="hero-card">
 
-    <p>
-      Current prediction
-    </p>
+    <p>Current prediction</p>
 
-    <h2 id="heroPercent">
-      60%
-    </h2>
+    <h2 id="heroPercent">--%</h2>
 
     <h3 id="heroStatus">
-      Medium occupancy
+      Select your trip
     </h3>
 
-
-    <div class="hero-info">
+    <div class="hero-bottom">
 
       <div>
-
-        <span>
-          Route
-        </span>
-
-        <strong id="heroRoute">
-          Bus 10
-        </strong>
-
+        <span>Route</span>
+        <strong id="heroRoute">Bus 10</strong>
       </div>
 
-
       <div>
-
-        <span>
-          Next bus
-        </span>
-
-        <strong id="heroNext">
-          8 min
-        </strong>
-
+        <span>Next bus</span>
+        <strong id="heroNext">8 min</strong>
       </div>
 
     </div>
@@ -116,85 +75,48 @@
 </section>
 
 
-
 <main>
 
+<section class="card">
 
-<section class="main-card">
+  <h2>Trip Prediction</h2>
 
-  <h2>
-    Trip Prediction
-  </h2>
-
-  <p class="grey">
+  <p class="muted">
     Select your route, stop and departure time.
   </p>
 
 
   <div class="controls">
 
-
     <div>
-
-      <label>
-        Route
-      </label>
+      <label>Route</label>
 
       <select id="route">
-
-        <option value="10">
-          Bus 10
-        </option>
-
-        <option value="21">
-          Bus 21
-        </option>
-
-        <option value="26">
-          Bus 26
-        </option>
-
-        <option value="40">
-          Bus 40
-        </option>
-
-        <option value="44">
-          Bus 44
-        </option>
-
-        <option value="50">
-          Bus 50
-        </option>
-
+        <option value="10">Bus 10</option>
+        <option value="21">Bus 21</option>
+        <option value="26">Bus 26</option>
+        <option value="40">Bus 40</option>
+        <option value="44">Bus 44</option>
+        <option value="50">Bus 50</option>
       </select>
-
     </div>
 
 
     <div>
+      <label>Stop</label>
 
-      <label>
-        Stop
-      </label>
-
-      <select id="stop">
-      </select>
-
+      <select id="stop"></select>
     </div>
 
 
     <div>
-
-      <label>
-        Time
-      </label>
+      <label>Time</label>
 
       <input
-        type="time"
         id="time"
+        type="time"
         value="18:00"
       >
-
     </div>
 
 
@@ -205,65 +127,33 @@
   </div>
 
 
-
   <div class="dashboard">
 
-
-    <div class="left">
-
+    <div>
 
       <div class="stats">
 
-
-        <div class="stat">
-
-          <p>
-            Predicted occupancy
-          </p>
-
-          <h2 id="percent">
-            60%
-          </h2>
-
+        <div class="stat-card">
+          <p>Predicted occupancy</p>
+          <h2 id="percent">--%</h2>
         </div>
 
-
-        <div class="stat">
-
-          <p>
-            Passengers
-          </p>
-
-          <h2 id="passengers">
-            60
-          </h2>
-
+        <div class="stat-card">
+          <p>Passengers</p>
+          <h2 id="passengers">--</h2>
         </div>
 
-
-        <div class="stat">
-
-          <p>
-            Bus capacity
-          </p>
-
-          <h2 id="capacity">
-            100
-          </h2>
-
+        <div class="stat-card">
+          <p>Bus capacity</p>
+          <h2 id="capacity">--</h2>
         </div>
-
 
       </div>
 
 
+      <div class="occupancy-card">
 
-      <div class="occupancy-box">
-
-        <p>
-          Occupancy level
-        </p>
-
+        <p>Occupancy level</p>
 
         <span
           id="status"
@@ -275,33 +165,32 @@
 
         <div class="progress">
 
-          <div id="progressBar">
-          </div>
+          <div id="progressBar"></div>
 
         </div>
 
 
         <p
           id="contextText"
-          class="grey"
+          class="muted"
         >
-          Normal traffic period.
+          Select a trip to see the prediction.
         </p>
-
 
 
         <div class="recommendation">
 
-          <p>
-            Recommendation
-          </p>
+          <p>Recommendation</p>
 
           <h3 id="recommendation">
-            You can take this bus.
+            Select your trip.
           </h3>
 
-          <p id="recommendationDetail">
-            The bus may be moderately crowded.
+          <p
+            id="recommendationDetail"
+            class="muted"
+          >
+            SmartBus will recommend whether to take this bus.
           </p>
 
         </div>
@@ -311,19 +200,16 @@
     </div>
 
 
+    <div class="route-panel">
 
-    <div class="route-box">
-
-      <h2>
-        Route Stops
-      </h2>
+      <h2>Route Stops</h2>
 
 
-      <div class="search-box">
+      <div class="search-row">
 
         <input
-          type="text"
           id="stopSearch"
+          type="text"
           placeholder="Search stop..."
         >
 
@@ -334,39 +220,34 @@
       </div>
 
 
+      <div id="searchMessage"></div>
+
+
       <div
         id="routeStops"
-        class="stop-buttons"
-      >
-      </div>
+        class="stop-list"
+      ></div>
 
     </div>
 
-
   </div>
 
 </section>
 
 
+<section class="card map-card">
 
-<section class="map-section">
+  <h2>Route Map</h2>
 
-  <h2>
-    Route Map
-  </h2>
-
-  <p class="grey">
-    Click a stop to move the map.
+  <p class="muted">
+    Click a stop or map marker to select it.
   </p>
 
-  <div id="map">
-  </div>
+  <div id="map"></div>
 
 </section>
 
-
 </main>
-
 
 
 <footer>
@@ -374,14 +255,11 @@
 </footer>
 
 
-
 <script
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
 
-<script src="script.js">
-</script>
-
+<script src="script.js"></script>
 
 </body>
 </html>
