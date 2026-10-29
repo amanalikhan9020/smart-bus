@@ -1,1586 +1,2739 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-
-  /* =========================
-     ROUTE DATA
-  ========================= */
-
-  const routes = {
-
-    "10": {
-      capacity: 100,
-
-      stops: [
-        {
-          name: "Железнодорожный вокзал",
-          lat: 51.195,
-          lng: 71.409,
-          factor: 0.60
-        },
-
-        {
-          name: "Биржан Сала",
-          lat: 51.190,
-          lng: 71.414,
-          factor: 0.48
-        },
-
-        {
-          name: "Агротехнический университет",
-          lat: 51.174,
-          lng: 71.421,
-          factor: 0.55
-        },
-
-        {
-          name: "Медицинский университет",
-          lat: 51.169,
-          lng: 71.423,
-          factor: 0.58
-        },
-
-        {
-          name: "Проспект Республики",
-          lat: 51.162,
-          lng: 71.431,
-          factor: 0.64
-        },
-
-        {
-          name: "Парк Ататюрк",
-          lat: 51.146,
-          lng: 71.433,
-          factor: 0.45
-        },
-
-        {
-          name: "Динмухамеда Кунаева",
-          lat: 51.133,
-          lng: 71.433,
-          factor: 0.54
-        },
-
-        {
-          name: "Туран",
-          lat: 51.124,
-          lng: 71.420,
-          factor: 0.60
-        },
-
-        {
-          name: "Кабанбай батыра",
-          lat: 51.111,
-          lng: 71.426,
-          factor: 0.56
-        },
-
-        {
-          name: "Международный аэропорт",
-          lat: 51.022,
-          lng: 71.467,
-          factor: 0.50
-        }
-      ]
-    },
-
-
-    "21": {
-      capacity: 105,
-
-      stops: [
-        {
-          name: "Железнодорожный вокзал",
-          lat: 51.195,
-          lng: 71.409,
-          factor: 0.60
-        },
-
-        {
-          name: "Театр Жастар",
-          lat: 51.181,
-          lng: 71.417,
-          factor: 0.43
-        },
-
-        {
-          name: "Проспект Женис",
-          lat: 51.173,
-          lng: 71.420,
-          factor: 0.50
-        },
-
-        {
-          name: "ЖК Сарайшык",
-          lat: 51.151,
-          lng: 71.437,
-          factor: 0.45
-        },
-
-        {
-          name: "Рахимжана Кошкарбаева",
-          lat: 51.137,
-          lng: 71.462,
-          factor: 0.53
-        },
-
-        {
-          name: "Ахмета Байтурсынова",
-          lat: 51.120,
-          lng: 71.470,
-          factor: 0.46
-        },
-
-        {
-          name: "Дворец творчества Шабыт",
-          lat: 51.116,
-          lng: 71.468,
-          factor: 0.55
-        },
-
-        {
-          name: "Тауелсыздык",
-          lat: 51.111,
-          lng: 71.462,
-          factor: 0.51
-        },
-
-        {
-          name: "Мангилик Ел",
-          lat: 51.101,
-          lng: 71.437,
-          factor: 0.59
-        },
-
-        {
-          name: "Вокзал Нурлы Жол",
-          lat: 51.100,
-          lng: 71.531,
-          factor: 0.58
-        }
-      ]
-    },
-
-
-    "26": {
-      capacity: 105,
-
-      stops: [
-        {
-          name: "Ж/м Караоткель",
-          lat: 51.198,
-          lng: 71.337,
-          factor: 0.32
-        },
-
-        {
-          name: "Акыртас",
-          lat: 51.191,
-          lng: 71.348,
-          factor: 0.34
-        },
-
-        {
-          name: "Проспект Тауелсиздик",
-          lat: 51.170,
-          lng: 71.414,
-          factor: 0.51
-        },
-
-        {
-          name: "ТРЦ Ажар",
-          lat: 51.164,
-          lng: 71.423,
-          factor: 0.56
-        },
-
-        {
-          name: "Шарля де Голля",
-          lat: 51.154,
-          lng: 71.428,
-          factor: 0.42
-        },
-
-        {
-          name: "Медицинский центр",
-          lat: 51.147,
-          lng: 71.434,
-          factor: 0.48
-        },
-
-        {
-          name: "Школа-гимназия №30",
-          lat: 51.141,
-          lng: 71.439,
-          factor: 0.45
-        },
-
-        {
-          name: "Алексея Петрова",
-          lat: 51.136,
-          lng: 71.445,
-          factor: 0.41
-        },
-
-        {
-          name: "ТД Меридиан",
-          lat: 51.129,
-          lng: 71.451,
-          factor: 0.56
-        },
-
-        {
-          name: "СК Казахстан",
-          lat: 51.124,
-          lng: 71.457,
-          factor: 0.62
-        },
-
-        {
-          name: "ТД Орбита",
-          lat: 51.118,
-          lng: 71.462,
-          factor: 0.57
-        },
-
-        {
-          name: "Монумент Защитников Отечества",
-          lat: 51.112,
-          lng: 71.465,
-          factor: 0.59
-        }
-      ]
-    },
-
-
-    "40": {
-      capacity: 110,
-
-      stops: [
-        {
-          name: "Железнодорожный вокзал",
-          lat: 51.195,
-          lng: 71.409,
-          factor: 0.61
-        },
-
-        {
-          name: "Театр Жастар",
-          lat: 51.181,
-          lng: 71.417,
-          factor: 0.46
-        },
-
-        {
-          name: "Алтынсарина",
-          lat: 51.177,
-          lng: 71.419,
-          factor: 0.42
-        },
-
-        {
-          name: "Алии Молдагуловой",
-          lat: 51.173,
-          lng: 71.421,
-          factor: 0.44
-        },
-
-        {
-          name: "Школа-лицей №15",
-          lat: 51.169,
-          lng: 71.420,
-          factor: 0.48
-        },
-
-        {
-          name: "Университет искусств",
-          lat: 51.163,
-          lng: 71.419,
-          factor: 0.53
-        },
-
-        {
-          name: "Городская поликлиника №1",
-          lat: 51.157,
-          lng: 71.420,
-          factor: 0.51
-        },
-
-        {
-          name: "Дворец Жастар",
-          lat: 51.151,
-          lng: 71.421,
-          factor: 0.56
-        },
-
-        {
-          name: "Астаналык базар",
-          lat: 51.146,
-          lng: 71.423,
-          factor: 0.59
-        },
-
-        {
-          name: "Улица Кенесары",
-          lat: 51.139,
-          lng: 71.429,
-          factor: 0.55
-        },
-
-        {
-          name: "Евразийский национальный университет",
-          lat: 51.132,
-          lng: 71.470,
-          factor: 0.61
-        },
-
-        {
-          name: "Пожарная часть №4",
-          lat: 51.106,
-          lng: 71.402,
-          factor: 0.40
-        }
-      ]
-    },
-
-
-    "44": {
-      capacity: 98,
-
-      stops: [
-        {
-          name: "Ж/м Жагалау-3",
-          lat: 51.151,
-          lng: 71.353,
-          factor: 0.36
-        },
-
-        {
-          name: "ЖК Кулагер",
-          lat: 51.149,
-          lng: 71.361,
-          factor: 0.39
-        },
-
-        {
-          name: "Улица Айтматова",
-          lat: 51.145,
-          lng: 71.372,
-          factor: 0.42
-        },
-
-        {
-          name: "Университет технологии и бизнеса",
-          lat: 51.142,
-          lng: 71.381,
-          factor: 0.53
-        },
-
-        {
-          name: "ЖК Дания",
-          lat: 51.138,
-          lng: 71.389,
-          factor: 0.43
-        },
-
-        {
-          name: "Школа Жасулан",
-          lat: 51.134,
-          lng: 71.398,
-          factor: 0.47
-        },
-
-        {
-          name: "Автоцентр Сарыарка",
-          lat: 51.132,
-          lng: 71.407,
-          factor: 0.48
-        },
-
-        {
-          name: "РЦ Думан",
-          lat: 51.130,
-          lng: 71.414,
-          factor: 0.55
-        },
-
-        {
-          name: "Александра Бараева",
-          lat: 51.128,
-          lng: 71.423,
-          factor: 0.53
-        },
-
-        {
-          name: "Монумент Защитников Отечества",
-          lat: 51.112,
-          lng: 71.465,
-          factor: 0.61
-        },
-
-        {
-          name: "ТД Орбита",
-          lat: 51.109,
-          lng: 71.468,
-          factor: 0.58
-        },
-
-        {
-          name: "ТЦ Евразия",
-          lat: 51.104,
-          lng: 71.472,
-          factor: 0.65
-        }
-      ]
-    },
-
-
-    "50": {
-      capacity: 105,
-
-      stops: [
-        {
-          name: "ЖК Коктем",
-          lat: 51.210,
-          lng: 71.370,
-          factor: 0.36
-        },
-
-        {
-          name: "Парк Коктал",
-          lat: 51.202,
-          lng: 71.379,
-          factor: 0.39
-        },
-
-        {
-          name: "Средняя школа №106",
-          lat: 51.194,
-          lng: 71.389,
-          factor: 0.43
-        },
-
-        {
-          name: "Детский сад Бал-бала",
-          lat: 51.184,
-          lng: 71.400,
-          factor: 0.41
-        },
-
-        {
-          name: "Поликлиника №10",
-          lat: 51.171,
-          lng: 71.415,
-          factor: 0.48
-        },
-
-        {
-          name: "Улица Сейфуллина",
-          lat: 51.160,
-          lng: 71.421,
-          factor: 0.52
-        },
-
-        {
-          name: "Улица Кенесары",
-          lat: 51.149,
-          lng: 71.426,
-          factor: 0.55
-        },
-
-        {
-          name: "Парк Астана",
-          lat: 51.136,
-          lng: 71.419,
-          factor: 0.51
-        },
-
-        {
-          name: "Национальный музей",
-          lat: 51.118,
-          lng: 71.470,
-          factor: 0.62
-        },
-
-        {
-          name: "Президентский парк",
-          lat: 51.111,
-          lng: 71.465,
-          factor: 0.53
-        },
-
-        {
-          name: "Мангилик Ел",
-          lat: 51.101,
-          lng: 71.437,
-          factor: 0.59
-        },
-
-        {
-          name: "Ж/м Промышленный",
-          lat: 51.092,
-          lng: 71.493,
-          factor: 0.31
-        }
-      ]
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+/* =========================================
+   ROUTE DATA
+   Simulated data for educational prototype
+========================================= */
+
+const routes = {
+
+  "10": {
+
+    capacity: 100,
+
+    stops: [
+
+      {
+        name: "Railway Station",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.70
+      },
+
+      {
+        name: "Birzhan Sal",
+        lat: 51.190,
+        lng: 71.414,
+        factor: 0.45
+      },
+
+      {
+        name: "Agricultural University",
+        lat: 51.174,
+        lng: 71.421,
+        factor: 0.55
+      },
+
+      {
+        name: "Medical University",
+        lat: 51.169,
+        lng: 71.423,
+        factor: 0.60
+      },
+
+      {
+        name: "Respublika Avenue",
+        lat: 51.162,
+        lng: 71.431,
+        factor: 0.67
+      },
+
+      {
+        name: "Ataturk Park",
+        lat: 51.146,
+        lng: 71.433,
+        factor: 0.40
+      },
+
+      {
+        name: "Kunayev Street",
+        lat: 51.133,
+        lng: 71.433,
+        factor: 0.55
+      },
+
+      {
+        name: "Turan Avenue",
+        lat: 51.124,
+        lng: 71.420,
+        factor: 0.61
+      },
+
+      {
+        name: "Kabanbay Batyr",
+        lat: 51.111,
+        lng: 71.426,
+        factor: 0.58
+      },
+
+      {
+        name: "International Airport",
+        lat: 51.022,
+        lng: 71.467,
+        factor: 0.50
+      }
+
+    ]
+
+  },
+
+
+  "21": {
+
+    capacity: 105,
+
+    stops: [
+
+      {
+        name: "Railway Station",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.68
+      },
+
+      {
+        name: "Zhastar Theatre",
+        lat: 51.181,
+        lng: 71.417,
+        factor: 0.40
+      },
+
+      {
+        name: "Zhenis Avenue",
+        lat: 51.173,
+        lng: 71.420,
+        factor: 0.51
+      },
+
+      {
+        name: "Saraishyk Residential Complex",
+        lat: 51.151,
+        lng: 71.437,
+        factor: 0.44
+      },
+
+      {
+        name: "Koshkarbayev Street",
+        lat: 51.137,
+        lng: 71.462,
+        factor: 0.57
+      },
+
+      {
+        name: "Shabyt Palace",
+        lat: 51.116,
+        lng: 71.468,
+        factor: 0.63
+      },
+
+      {
+        name: "Tauelsizdik Avenue",
+        lat: 51.111,
+        lng: 71.462,
+        factor: 0.55
+      },
+
+      {
+        name: "Mangilik El",
+        lat: 51.101,
+        lng: 71.437,
+        factor: 0.72
+      },
+
+      {
+        name: "Nurly Zhol Station",
+        lat: 51.100,
+        lng: 71.531,
+        factor: 0.65
+      }
+
+    ]
+
+  },
+
+
+  "26": {
+
+    capacity: 105,
+
+    stops: [
+
+      {
+        name: "Karaotkel",
+        lat: 51.198,
+        lng: 71.337,
+        factor: 0.30
+      },
+
+      {
+        name: "Akyrtas",
+        lat: 51.191,
+        lng: 71.348,
+        factor: 0.35
+      },
+
+      {
+        name: "Tauelsizdik Avenue",
+        lat: 51.170,
+        lng: 71.414,
+        factor: 0.52
+      },
+
+      {
+        name: "Azhar Shopping Center",
+        lat: 51.164,
+        lng: 71.423,
+        factor: 0.58
+      },
+
+      {
+        name: "Charles de Gaulle Street",
+        lat: 51.154,
+        lng: 71.428,
+        factor: 0.42
+      },
+
+      {
+        name: "Medical Center",
+        lat: 51.147,
+        lng: 71.434,
+        factor: 0.51
+      },
+
+      {
+        name: "School Gymnasium 30",
+        lat: 51.141,
+        lng: 71.439,
+        factor: 0.48
+      },
+
+      {
+        name: "Meridian",
+        lat: 51.129,
+        lng: 71.451,
+        factor: 0.62
+      },
+
+      {
+        name: "Kazakhstan Sports Complex",
+        lat: 51.124,
+        lng: 71.457,
+        factor: 0.73
+      },
+
+      {
+        name: "Orbita",
+        lat: 51.118,
+        lng: 71.462,
+        factor: 0.66
+      },
+
+      {
+        name: "Defenders of the Fatherland Monument",
+        lat: 51.112,
+        lng: 71.465,
+        factor: 0.68
+      }
+
+    ]
+
+  },
+
+
+  "40": {
+
+    capacity: 110,
+
+    stops: [
+
+      {
+        name: "Railway Station",
+        lat: 51.195,
+        lng: 71.409,
+        factor: 0.66
+      },
+
+      {
+        name: "Zhastar Theatre",
+        lat: 51.181,
+        lng: 71.417,
+        factor: 0.43
+      },
+
+      {
+        name: "Altynsarin Street",
+        lat: 51.177,
+        lng: 71.419,
+        factor: 0.40
+      },
+
+      {
+        name: "Moldagulova Street",
+        lat: 51.173,
+        lng: 71.421,
+        factor: 0.45
+      },
+
+      {
+        name: "Arts University",
+        lat: 51.163,
+        lng: 71.419,
+        factor: 0.61
+      },
+
+      {
+        name: "City Polyclinic",
+        lat: 51.157,
+        lng: 71.420,
+        factor: 0.55
+      },
+
+      {
+        name: "Astana Market",
+        lat: 51.146,
+        lng: 71.423,
+        factor: 0.69
+      },
+
+      {
+        name: "Kenesary Street",
+        lat: 51.139,
+        lng: 71.429,
+        factor: 0.60
+      },
+
+      {
+        name: "ENU University",
+        lat: 51.132,
+        lng: 71.470,
+        factor: 0.74
+      }
+
+    ]
+
+  },
+
+
+  "44": {
+
+    capacity: 98,
+
+    stops: [
+
+      {
+        name: "Zhagalau",
+        lat: 51.151,
+        lng: 71.353,
+        factor: 0.35
+      },
+
+      {
+        name: "Kulager Residential Complex",
+        lat: 51.149,
+        lng: 71.361,
+        factor: 0.39
+      },
+
+      {
+        name: "Aitmatov Street",
+        lat: 51.145,
+        lng: 71.372,
+        factor: 0.42
+      },
+
+      {
+        name: "University of Technology",
+        lat: 51.142,
+        lng: 71.381,
+        factor: 0.58
+      },
+
+      {
+        name: "Duman",
+        lat: 51.130,
+        lng: 71.414,
+        factor: 0.63
+      },
+
+      {
+        name: "Barayev Street",
+        lat: 51.128,
+        lng: 71.423,
+        factor: 0.57
+      },
+
+      {
+        name: "Orbita",
+        lat: 51.109,
+        lng: 71.468,
+        factor: 0.68
+      },
+
+      {
+        name: "Eurasia Shopping Center",
+        lat: 51.104,
+        lng: 71.472,
+        factor: 0.73
+      }
+
+    ]
+
+  },
+
+
+  "50": {
+
+    capacity: 105,
+
+    stops: [
+
+      {
+        name: "Koktem Residential Complex",
+        lat: 51.210,
+        lng: 71.370,
+        factor: 0.35
+      },
+
+      {
+        name: "Koktal Park",
+        lat: 51.202,
+        lng: 71.379,
+        factor: 0.40
+      },
+
+      {
+        name: "School 106",
+        lat: 51.194,
+        lng: 71.389,
+        factor: 0.45
+      },
+
+      {
+        name: "Polyclinic 10",
+        lat: 51.171,
+        lng: 71.415,
+        factor: 0.52
+      },
+
+      {
+        name: "Seifullin Street",
+        lat: 51.160,
+        lng: 71.421,
+        factor: 0.58
+      },
+
+      {
+        name: "Kenesary Street",
+        lat: 51.149,
+        lng: 71.426,
+        factor: 0.62
+      },
+
+      {
+        name: "National Museum",
+        lat: 51.118,
+        lng: 71.470,
+        factor: 0.75
+      },
+
+      {
+        name: "Presidential Park",
+        lat: 51.111,
+        lng: 71.465,
+        factor: 0.61
+      },
+
+      {
+        name: "Mangilik El",
+        lat: 51.101,
+        lng: 71.437,
+        factor: 0.70
+      }
+
+    ]
+
+  }
+
+};
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const routeSelect =
+  document.getElementById("routeSelect");
+
+const stopSelect =
+  document.getElementById("stopSelect");
+
+const timeInput =
+  document.getElementById("timeInput");
+
+const stopButtons =
+  document.getElementById("stopButtons");
+
+const stopSearch =
+  document.getElementById("stopSearch");
+
+const searchMessage =
+  document.getElementById("searchMessage");
+
+
+let currentPrediction =
+  null;
+
+
+/* =========================================
+   AUTHENTICATION
+========================================= */
+
+function getUsers() {
+
+  return JSON.parse(
+    localStorage.getItem("smartBusUsers")
+  ) || [];
+
+}
+
+
+function saveUsers(users) {
+
+  localStorage.setItem(
+    "smartBusUsers",
+    JSON.stringify(users)
+  );
+
+}
+
+
+function getCurrentUser() {
+
+  return JSON.parse(
+    localStorage.getItem("smartBusCurrentUser")
+  );
+
+}
+
+
+function setCurrentUser(user) {
+
+  localStorage.setItem(
+    "smartBusCurrentUser",
+    JSON.stringify(user)
+  );
+
+}
+
+
+function updateAuthUI() {
+
+  const user =
+    getCurrentUser();
+
+
+  const authButtons =
+    document.getElementById(
+      "authButtons"
+    );
+
+
+  const userArea =
+    document.getElementById(
+      "userArea"
+    );
+
+
+  const guestButton =
+    document.getElementById(
+      "guestButton"
+    );
+
+
+  if (user) {
+
+    authButtons.classList.add(
+      "hidden"
+    );
+
+
+    userArea.classList.remove(
+      "hidden"
+    );
+
+
+    guestButton.classList.add(
+      "hidden"
+    );
+
+
+    document
+    .getElementById(
+      "welcomeUser"
+    )
+    .textContent =
+      "Hello, " +
+      user.name;
+
+
+  }
+
+  else {
+
+    authButtons.classList.remove(
+      "hidden"
+    );
+
+
+    userArea.classList.add(
+      "hidden"
+    );
+
+
+    guestButton.classList.remove(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+window.openRegister =
+function () {
+
+  document
+  .getElementById(
+    "registerModal"
+  )
+  .classList.remove(
+    "hidden"
+  );
+
+};
+
+
+window.closeRegister =
+function () {
+
+  document
+  .getElementById(
+    "registerModal"
+  )
+  .classList.add(
+    "hidden"
+  );
+
+};
+
+
+window.openLogin =
+function () {
+
+  document
+  .getElementById(
+    "loginModal"
+  )
+  .classList.remove(
+    "hidden"
+  );
+
+};
+
+
+window.closeLogin =
+function () {
+
+  document
+  .getElementById(
+    "loginModal"
+  )
+  .classList.add(
+    "hidden"
+  );
+
+};
+
+
+document
+.getElementById(
+  "createAccountButton"
+)
+.addEventListener(
+  "click",
+  function () {
+
+
+    const name =
+      document
+      .getElementById(
+        "registerName"
+      )
+      .value
+      .trim();
+
+
+    const email =
+      document
+      .getElementById(
+        "registerEmail"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+    const password =
+      document
+      .getElementById(
+        "registerPassword"
+      )
+      .value;
+
+
+    const confirm =
+      document
+      .getElementById(
+        "registerConfirm"
+      )
+      .value;
+
+
+    const error =
+      document
+      .getElementById(
+        "registerError"
+      );
+
+
+    error.textContent =
+      "";
+
+
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !confirm
+    ) {
+
+      error.textContent =
+        "All fields are required.";
+
+      return;
+
     }
+
+
+    if (
+      !email.includes("@")
+    ) {
+
+      error.textContent =
+        "Please enter a valid email address.";
+
+      return;
+
+    }
+
+
+    if (
+      password.length < 6
+    ) {
+
+      error.textContent =
+        "Password must contain at least 6 characters.";
+
+      return;
+
+    }
+
+
+    if (
+      password !== confirm
+    ) {
+
+      error.textContent =
+        "Passwords do not match.";
+
+      return;
+
+    }
+
+
+    const users =
+      getUsers();
+
+
+    const exists =
+      users.some(
+        user =>
+        user.email === email
+      );
+
+
+    if (exists) {
+
+      error.textContent =
+        "This email is already registered.";
+
+      return;
+
+    }
+
+
+    const newUser = {
+
+      id:
+        Date.now(),
+
+      name:
+        name,
+
+      email:
+        email,
+
+      password:
+        password,
+
+      type:
+        "Registered user"
+
+    };
+
+
+    users.push(
+      newUser
+    );
+
+
+    saveUsers(
+      users
+    );
+
+
+    setCurrentUser(
+      newUser
+    );
+
+
+    closeRegister();
+
+
+    updateAuthUI();
+
+
+    alert(
+      "Account successfully created!"
+    );
+
+  }
+);
+
+
+document
+.getElementById(
+  "loginButton"
+)
+.addEventListener(
+  "click",
+  function () {
+
+
+    const email =
+      document
+      .getElementById(
+        "loginEmail"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+    const password =
+      document
+      .getElementById(
+        "loginPassword"
+      )
+      .value;
+
+
+    const error =
+      document
+      .getElementById(
+        "loginError"
+      );
+
+
+    const users =
+      getUsers();
+
+
+    const user =
+      users.find(
+        item =>
+        item.email === email &&
+        item.password === password
+      );
+
+
+    if (!user) {
+
+      error.textContent =
+        "Incorrect email or password.";
+
+      return;
+
+    }
+
+
+    error.textContent =
+      "";
+
+
+    setCurrentUser(
+      user
+    );
+
+
+    closeLogin();
+
+
+    updateAuthUI();
+
+
+    alert(
+      "Login successful."
+    );
+
+  }
+);
+
+
+window.continueAsGuest =
+function () {
+
+  const guest = {
+
+    id:
+      "guest",
+
+    name:
+      "Guest",
+
+    email:
+      "No email",
+
+    type:
+      "Guest"
 
   };
 
 
-  /* =========================
-     ELEMENTS
-  ========================= */
-
-  const routeSelect =
-    document.getElementById("route");
-
-  const stopSelect =
-    document.getElementById("stop");
-
-  const timeInput =
-    document.getElementById("time");
-
-  const predictButton =
-    document.getElementById("predictButton");
-
-  const stopSearch =
-    document.getElementById("stopSearch");
-
-  const searchButton =
-    document.getElementById("searchButton");
-
-  const routeStops =
-    document.getElementById("routeStops");
-
-  const searchMessage =
-    document.getElementById("searchMessage");
+  setCurrentUser(
+    guest
+  );
 
 
-  /* =========================
-     MAP
-  ========================= */
+  updateAuthUI();
 
-  let map = null;
-
-  let markers = [];
-
-  let routeLine = null;
+};
 
 
-  function initializeMap() {
+window.logout =
+function () {
 
-    if (
-      typeof L === "undefined"
-    ) {
-
-      console.log(
-        "Map library did not load. Other website functions will still work."
-      );
-
-      return;
-
-    }
+  localStorage.removeItem(
+    "smartBusCurrentUser"
+  );
 
 
-    try {
-
-      map =
-        L.map("map")
-        .setView(
-          [51.145, 71.430],
-          11
-        );
+  updateAuthUI();
 
 
-      L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
+  showSection(
+    "home"
+  );
 
-          attribution:
-            "&copy; OpenStreetMap contributors"
-
-        }
-      ).addTo(map);
+};
 
 
-    }
+/* =========================================
+   PAGE NAVIGATION
+========================================= */
 
-    catch (error) {
-
-      console.log(
-        "Map error:",
-        error
-      );
+window.showSection =
+function (sectionId) {
 
 
-      map =
-        null;
-
-    }
-
-  }
-
-
-  function clearMap() {
-
-    if (!map) {
-      return;
-    }
-
-
-    markers.forEach(
-      function (marker) {
-
-        map.removeLayer(marker);
-
-      }
+  const sections =
+    document.querySelectorAll(
+      ".page-section"
     );
 
 
-    markers = [];
+  sections.forEach(
+    section =>
+    section.classList.add(
+      "hidden"
+    )
+  );
 
 
-    if (routeLine) {
+  document
+  .getElementById(
+    sectionId
+  )
+  .classList.remove(
+    "hidden"
+  );
 
-      map.removeLayer(
-        routeLine
-      );
 
-      routeLine =
-        null;
+  if (
+    sectionId ===
+    "analytics"
+  ) {
 
-    }
+    updateAnalytics();
 
   }
 
 
-  function drawRouteOnMap() {
+  if (
+    sectionId ===
+    "saved"
+  ) {
 
-    if (!map) {
-      return;
+    displaySavedTrips();
+
+  }
+
+};
+
+
+window.showProfile =
+function () {
+
+
+  const user =
+    getCurrentUser();
+
+
+  if (!user) {
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  document
+  .getElementById(
+    "profileName"
+  )
+  .textContent =
+    user.name;
+
+
+  document
+  .getElementById(
+    "profileEmail"
+  )
+  .textContent =
+    user.email;
+
+
+  document
+  .getElementById(
+    "profileType"
+  )
+  .textContent =
+    user.type;
+
+
+  showSection(
+    "profile"
+  );
+
+};
+
+
+/* =========================================
+   MAP
+========================================= */
+
+let map =
+  null;
+
+let mapMarkers =
+  [];
+
+let routeLine =
+  null;
+
+
+function initializeMap() {
+
+
+  if (
+    typeof L ===
+    "undefined"
+  ) {
+
+    return;
+
+  }
+
+
+  map =
+    L.map(
+      "map"
+    )
+    .setView(
+      [
+        51.145,
+        71.430
+      ],
+      11
+    );
+
+
+  L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+
+      attribution:
+        "&copy; OpenStreetMap contributors"
+
     }
+  )
+  .addTo(
+    map
+  );
+
+}
 
 
-    clearMap();
+function drawRoute() {
 
 
-    const route =
-      routes[
-        routeSelect.value
-      ];
+  if (!map) {
+    return;
+  }
 
 
-    const coordinates =
-      [];
+  mapMarkers.forEach(
+    marker =>
+    map.removeLayer(
+      marker
+    )
+  );
 
 
-    route.stops.forEach(
-      function (stop, index) {
+  mapMarkers =
+    [];
 
 
-        coordinates.push(
+  if (
+    routeLine
+  ) {
+
+    map.removeLayer(
+      routeLine
+    );
+
+  }
+
+
+  const route =
+    routes[
+      routeSelect.value
+    ];
+
+
+  const points =
+    [];
+
+
+  route.stops.forEach(
+    function (
+      stop,
+      index
+    ) {
+
+
+      points.push(
+        [
+          stop.lat,
+          stop.lng
+        ]
+      );
+
+
+      const marker =
+        L.marker(
           [
             stop.lat,
             stop.lng
           ]
+        )
+        .addTo(
+          map
         );
 
 
-        const marker =
-          L.marker(
-            [
-              stop.lat,
-              stop.lng
-            ]
-          );
+      marker.bindPopup(
+        stop.name
+      );
 
 
-        marker
-        .addTo(map)
-        .bindPopup(
-          `
-          <strong>
-            ${stop.name}
-          </strong>
-
-          <br>
-
-          Bus ${routeSelect.value}
-          `
-        );
+      marker.on(
+        "click",
+        function () {
 
 
-        marker.on(
-          "click",
-          function () {
+          stopSelect.value =
+            index;
 
 
-            stopSelect.value =
-              index;
+          calculatePrediction();
 
-
-            calculatePrediction();
-
-
-          }
-        );
-
-
-        markers.push(
-          marker
-        );
-
-
-      }
-    );
-
-
-    routeLine =
-      L.polyline(
-        coordinates,
-        {
-          weight: 5
-        }
-      )
-      .addTo(map);
-
-
-    try {
-
-      map.fitBounds(
-        routeLine.getBounds(),
-        {
-          padding:
-            [30, 30]
         }
       );
 
+
+      mapMarkers.push(
+        marker
+      );
+
     }
+  );
 
-    catch (error) {
 
-      console.log(error);
+  routeLine =
+    L.polyline(
+      points,
+      {
+        weight:
+          5
+      }
+    )
+    .addTo(
+      map
+    );
+
+
+  map.fitBounds(
+    routeLine.getBounds(),
+    {
+      padding:
+        [30,30]
+    }
+  );
+
+}
+
+
+/* =========================================
+   ROUTE / STOPS
+========================================= */
+
+function loadStops() {
+
+
+  const route =
+    routes[
+      routeSelect.value
+    ];
+
+
+  stopSelect.innerHTML =
+    "";
+
+
+  route.stops.forEach(
+    function (
+      stop,
+      index
+    ) {
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        index;
+
+
+      option.textContent =
+        stop.name;
+
+
+      stopSelect.appendChild(
+        option
+      );
 
     }
+  );
+
+
+  stopSelect.value =
+    0;
+
+
+  stopSearch.value =
+    "";
+
+
+  renderStopButtons();
+
+
+  drawRoute();
+
+
+  calculatePrediction();
+
+}
+
+
+function renderStopButtons() {
+
+
+  const route =
+    routes[
+      routeSelect.value
+    ];
+
+
+  const selectedIndex =
+    Number(
+      stopSelect.value
+    );
+
+
+  const search =
+    stopSearch.value
+    .toLowerCase()
+    .trim();
+
+
+  stopButtons.innerHTML =
+    "";
+
+
+  let found =
+    0;
+
+
+  route.stops.forEach(
+    function (
+      stop,
+      index
+    ) {
+
+
+      if (
+        search &&
+        !stop.name
+        .toLowerCase()
+        .includes(
+          search
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      found++;
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "stop-button";
+
+
+      if (
+        index ===
+        selectedIndex
+      ) {
+
+        button.classList.add(
+          "active"
+        );
+
+      }
+
+
+      button.textContent =
+        `${index + 1}. ${stop.name}`;
+
+
+      button.addEventListener(
+        "click",
+        function () {
+
+
+          stopSelect.value =
+            index;
+
+
+          calculatePrediction();
+
+        }
+      );
+
+
+      stopButtons.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  if (
+    found === 0
+  ) {
+
+    searchMessage.textContent =
+      "Stop not found.";
+
+  }
+
+  else {
+
+    searchMessage.textContent =
+      "";
+
+  }
+
+}
+
+
+/* =========================================
+   SMART FUNCTION
+========================================= */
+
+function getTimeFactor(hour) {
+
+
+  if (
+    hour >= 7 &&
+    hour < 9
+  ) {
+
+    return 0.25;
 
   }
 
 
-  function focusSelectedStop() {
+  if (
+    hour >= 17 &&
+    hour < 20
+  ) {
 
-    if (!map) {
-      return;
-    }
+    return 0.32;
 
-
-    const route =
-      routes[
-        routeSelect.value
-      ];
+  }
 
 
-    const stopIndex =
-      Number(
-        stopSelect.value
-      );
+  if (
+    hour >= 21 ||
+    hour < 6
+  ) {
+
+    return -0.15;
+
+  }
 
 
-    const stop =
-      route.stops[
-        stopIndex
-      ];
+  return 0.05;
+
+}
 
 
-    if (!stop) {
-      return;
-    }
+function calculatePrediction() {
 
+
+  const routeNumber =
+    routeSelect.value;
+
+
+  const route =
+    routes[
+      routeNumber
+    ];
+
+
+  const stopIndex =
+    Number(
+      stopSelect.value
+    );
+
+
+  const stop =
+    route.stops[
+      stopIndex
+    ];
+
+
+  if (!stop) {
+    return;
+  }
+
+
+  const time =
+    timeInput.value ||
+    "12:00";
+
+
+  const pieces =
+    time.split(":");
+
+
+  const hour =
+    Number(
+      pieces[0]
+    ) +
+
+    Number(
+      pieces[1]
+    ) / 60;
+
+
+  let occupancy =
+
+    18 +
+
+    stop.factor * 62 +
+
+    getTimeFactor(
+      hour
+    ) * 65 +
+
+    Math.sin(
+      stopIndex +
+      hour
+    ) * 4;
+
+
+  occupancy =
+    Math.round(
+      occupancy
+    );
+
+
+  occupancy =
+    Math.max(
+      15,
+      Math.min(
+        96,
+        occupancy
+      )
+    );
+
+
+  const passengers =
+    Math.round(
+      route.capacity *
+      occupancy /
+      100
+    );
+
+
+  currentPrediction = {
+
+    route:
+      routeNumber,
+
+    stop:
+      stop.name,
+
+    time:
+      time,
+
+    occupancy:
+      occupancy,
+
+    passengers:
+      passengers,
+
+    capacity:
+      route.capacity
+
+  };
+
+
+  updatePredictionUI(
+    currentPrediction,
+    hour
+  );
+
+
+  renderStopButtons();
+
+
+  if (
+    map
+  ) {
 
     map.flyTo(
       [
         stop.lat,
         stop.lng
       ],
-      14,
-      {
-        duration:
-          0.7
-      }
+      14
     );
 
   }
 
-
-  /* =========================
-     STOP LIST
-  ========================= */
-
-  function loadStops() {
-
-    const route =
-      routes[
-        routeSelect.value
-      ];
+}
 
 
-    stopSelect.innerHTML =
-      "";
+function updatePredictionUI(
+  prediction,
+  hour
+) {
 
 
-    route.stops.forEach(
-      function (stop, index) {
+  document
+  .getElementById(
+    "occupancyValue"
+  )
+  .textContent =
+    prediction.occupancy +
+    "%";
 
 
-        const option =
-          document.createElement(
-            "option"
-          );
+  document
+  .getElementById(
+    "passengerValue"
+  )
+  .textContent =
+    prediction.passengers;
 
 
-        option.value =
-          index;
+  document
+  .getElementById(
+    "capacityValue"
+  )
+  .textContent =
+    prediction.capacity;
 
 
-        option.textContent =
-          stop.name;
+  document
+  .getElementById(
+    "heroPercent"
+  )
+  .textContent =
+    prediction.occupancy +
+    "%";
 
 
-        stopSelect.appendChild(
-          option
-        );
+  document
+  .getElementById(
+    "heroRoute"
+  )
+  .textContent =
+    "Bus " +
+    prediction.route;
 
 
-      }
+  const status =
+    document
+    .getElementById(
+      "occupancyStatus"
     );
 
 
-    stopSelect.value =
-      0;
+  const bar =
+    document
+    .getElementById(
+      "progressBar"
+    );
 
 
-    stopSearch.value =
-      "";
+  let nextBus =
+    8;
 
 
-    searchMessage.textContent =
-      "";
+  if (
+    prediction.occupancy <
+    45
+  ) {
 
 
-    renderStopButtons();
+    status.textContent =
+      "Low";
 
 
-    drawRouteOnMap();
+    status.className =
+      "status low";
 
 
-    calculatePrediction();
+    bar.style.background =
+      "#22c55e";
+
+
+    document
+    .getElementById(
+      "heroStatus"
+    )
+    .textContent =
+      "Low occupancy";
+
+
+    document
+    .getElementById(
+      "recommendationText"
+    )
+    .textContent =
+      "Take this bus.";
+
+
+    document
+    .getElementById(
+      "recommendationDescription"
+    )
+    .textContent =
+      "The bus is expected to have enough free space.";
 
   }
 
 
-  function renderStopButtons() {
-
-    const route =
-      routes[
-        routeSelect.value
-      ];
+  else if (
+    prediction.occupancy <
+    75
+  ) {
 
 
-    const selectedIndex =
-      Number(
-        stopSelect.value
+    status.textContent =
+      "Medium";
+
+
+    status.className =
+      "status medium";
+
+
+    bar.style.background =
+      "#f59e0b";
+
+
+    document
+    .getElementById(
+      "heroStatus"
+    )
+    .textContent =
+      "Medium occupancy";
+
+
+    document
+    .getElementById(
+      "recommendationText"
+    )
+    .textContent =
+      "You can take this bus.";
+
+
+    document
+    .getElementById(
+      "recommendationDescription"
+    )
+    .textContent =
+      "The bus may be moderately crowded.";
+
+  }
+
+
+  else {
+
+
+    status.textContent =
+      "High";
+
+
+    status.className =
+      "status high";
+
+
+    bar.style.background =
+      "#ef4444";
+
+
+    nextBus =
+      6;
+
+
+    document
+    .getElementById(
+      "heroStatus"
+    )
+    .textContent =
+      "High occupancy";
+
+
+    document
+    .getElementById(
+      "recommendationText"
+    )
+    .textContent =
+      "Wait for the next bus if possible.";
+
+
+    document
+    .getElementById(
+      "recommendationDescription"
+    )
+    .textContent =
+      "High passenger demand is expected. The next bus may be less crowded.";
+
+  }
+
+
+  bar.style.width =
+    prediction.occupancy +
+    "%";
+
+
+  document
+  .getElementById(
+    "heroNext"
+  )
+  .textContent =
+    nextBus +
+    " min";
+
+
+  let demand =
+    "Normal passenger demand expected.";
+
+
+  if (
+    hour >= 7 &&
+    hour < 9
+  ) {
+
+    demand =
+      "Morning peak: passenger demand is higher than usual.";
+
+  }
+
+
+  else if (
+    hour >= 17 &&
+    hour < 20
+  ) {
+
+    demand =
+      "Evening peak: high passenger demand expected.";
+
+  }
+
+
+  else if (
+    hour >= 21 ||
+    hour < 6
+  ) {
+
+    demand =
+      "Off-peak period: passenger demand is usually lower.";
+
+  }
+
+
+  document
+  .getElementById(
+    "demandMessage"
+  )
+  .textContent =
+    demand;
+
+}
+
+
+/* =========================================
+   SAVE TRIPS
+========================================= */
+
+function getSavedTrips() {
+
+  const user =
+    getCurrentUser();
+
+
+  if (!user) {
+
+    return [];
+
+  }
+
+
+  const key =
+    "smartBusTrips_" +
+    user.id;
+
+
+  return JSON.parse(
+    localStorage.getItem(
+      key
+    )
+  ) || [];
+
+}
+
+
+function saveTrips(
+  trips
+) {
+
+  const user =
+    getCurrentUser();
+
+
+  if (!user) {
+    return;
+  }
+
+
+  const key =
+    "smartBusTrips_" +
+    user.id;
+
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(
+      trips
+    )
+  );
+
+}
+
+
+document
+.getElementById(
+  "saveTripButton"
+)
+.addEventListener(
+  "click",
+  function () {
+
+
+    const user =
+      getCurrentUser();
+
+
+    if (!user) {
+
+      alert(
+        "Please login, register or continue as guest first."
       );
-
-
-    const searchText =
-      stopSearch.value
-      .toLowerCase()
-      .trim();
-
-
-    routeStops.innerHTML =
-      "";
-
-
-    let numberFound =
-      0;
-
-
-    route.stops.forEach(
-      function (stop, index) {
-
-
-        const matches =
-          stop.name
-          .toLowerCase()
-          .includes(
-            searchText
-          );
-
-
-        if (!matches) {
-
-          return;
-
-        }
-
-
-        numberFound++;
-
-
-        const button =
-          document.createElement(
-            "button"
-          );
-
-
-        button.type =
-          "button";
-
-
-        button.className =
-          "stop-button";
-
-
-        if (
-          index ===
-          selectedIndex
-        ) {
-
-          button.classList.add(
-            "active"
-          );
-
-        }
-
-
-        button.textContent =
-          `${index + 1}. ${stop.name}`;
-
-
-        button.addEventListener(
-          "click",
-          function () {
-
-
-            stopSelect.value =
-              index;
-
-
-            calculatePrediction();
-
-
-          }
-        );
-
-
-        routeStops.appendChild(
-          button
-        );
-
-
-      }
-    );
-
-
-    if (
-      numberFound === 0
-    ) {
-
-
-      searchMessage.textContent =
-        "No stops found.";
-
-
-    }
-
-    else {
-
-
-      searchMessage.textContent =
-        "";
-
-
-    }
-
-  }
-
-
-  /* =========================
-     OCCUPANCY
-  ========================= */
-
-  function getTimeFactor(hour) {
-
-    if (
-      hour >= 7 &&
-      hour < 9
-    ) {
-
-      return 0.25;
-
-    }
-
-
-    if (
-      hour >= 17 &&
-      hour < 20
-    ) {
-
-      return 0.30;
-
-    }
-
-
-    if (
-      hour >= 12 &&
-      hour < 14
-    ) {
-
-      return 0.12;
-
-    }
-
-
-    if (
-      hour >= 21 ||
-      hour < 6
-    ) {
-
-      return -0.15;
-
-    }
-
-
-    return 0.03;
-
-  }
-
-
-  function calculatePrediction() {
-
-    const routeNumber =
-      routeSelect.value;
-
-
-    const route =
-      routes[
-        routeNumber
-      ];
-
-
-    const stopIndex =
-      Number(
-        stopSelect.value
-      );
-
-
-    const stop =
-      route.stops[
-        stopIndex
-      ];
-
-
-    if (!stop) {
 
       return;
 
     }
 
 
-    const timeValue =
-      timeInput.value ||
-      "12:00";
+    if (!currentPrediction) {
+
+      alert(
+        "Please calculate a prediction first."
+      );
+
+      return;
+
+    }
 
 
-    const timeParts =
-      timeValue.split(":");
+    const trips =
+      getSavedTrips();
 
 
-    const hour =
-      Number(
-        timeParts[0]
-      ) +
+    const duplicate =
+      trips.some(
+        trip =>
 
-      Number(
-        timeParts[1]
-      ) / 60;
+        trip.route ===
+        currentPrediction.route &&
 
+        trip.stop ===
+        currentPrediction.stop &&
 
-    const timeFactor =
-      getTimeFactor(
-        hour
+        trip.time ===
+        currentPrediction.time
+
       );
 
 
-    const variation =
-      Math.sin(
-        stopIndex * 1.31 +
-        hour * 0.65
-      ) * 5;
+    if (duplicate) {
+
+      alert(
+        "This trip is already saved."
+      );
+
+      return;
+
+    }
 
 
-    let occupancy =
+    trips.push({
 
-      20 +
+      id:
+        Date.now(),
 
-      stop.factor * 60 +
+      ...currentPrediction
 
-      timeFactor * 70 +
-
-      variation;
+    });
 
 
-    occupancy =
-      Math.round(
-        occupancy
+    saveTrips(
+      trips
+    );
+
+
+    alert(
+      "Trip saved successfully."
+    );
+
+  }
+);
+
+
+/* =========================================
+   DISPLAY SAVED TRIPS
+========================================= */
+
+function displaySavedTrips() {
+
+
+  const container =
+    document.getElementById(
+      "savedTripsContainer"
+    );
+
+
+  const user =
+    getCurrentUser();
+
+
+  if (!user) {
+
+    container.innerHTML =
+      "<p>Please login or continue as guest first.</p>";
+
+    return;
+
+  }
+
+
+  const filter =
+    document
+    .getElementById(
+      "savedRouteFilter"
+    )
+    .value;
+
+
+  let trips =
+    getSavedTrips();
+
+
+  if (
+    filter !==
+    "all"
+  ) {
+
+    trips =
+      trips.filter(
+        trip =>
+        trip.route === filter
+      );
+
+  }
+
+
+  container.innerHTML =
+    "";
+
+
+  if (
+    trips.length ===
+    0
+  ) {
+
+    container.innerHTML =
+      "<p>No saved trips yet.</p>";
+
+    return;
+
+  }
+
+
+  trips.forEach(
+    function (
+      trip
+    ) {
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "saved-trip";
+
+
+      row.innerHTML =
+        `
+        <strong>
+          Bus ${trip.route}
+        </strong>
+
+        <span>
+          ${trip.stop}
+        </span>
+
+        <span>
+          ${trip.time}
+        </span>
+
+        <span>
+          ${trip.occupancy}% occupied
+        </span>
+
+        <button
+          class="delete-trip"
+          data-id="${trip.id}"
+        >
+          Delete
+        </button>
+        `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+
+  document
+  .querySelectorAll(
+    ".delete-trip"
+  )
+  .forEach(
+    button => {
+
+
+      button.addEventListener(
+        "click",
+        function () {
+
+
+          deleteTrip(
+            Number(
+              this.dataset.id
+            )
+          );
+
+
+        }
       );
 
 
-    occupancy =
-      Math.max(
-        15,
-        Math.min(
-          96,
-          occupancy
+    }
+  );
+
+}
+
+
+function deleteTrip(
+  id
+) {
+
+
+  let trips =
+    getSavedTrips();
+
+
+  trips =
+    trips.filter(
+      trip =>
+      trip.id !== id
+    );
+
+
+  saveTrips(
+    trips
+  );
+
+
+  displaySavedTrips();
+
+}
+
+
+document
+.getElementById(
+  "savedRouteFilter"
+)
+.addEventListener(
+  "change",
+  displaySavedTrips
+);
+
+
+/* =========================================
+   ANALYTICS
+========================================= */
+
+const simulatedAnalyticsData = [
+
+  {
+    route:
+      "10",
+    occupancy:
+      62
+  },
+
+  {
+    route:
+      "10",
+    occupancy:
+      70
+  },
+
+  {
+    route:
+      "21",
+    occupancy:
+      58
+  },
+
+  {
+    route:
+      "21",
+    occupancy:
+      76
+  },
+
+  {
+    route:
+      "26",
+    occupancy:
+      91
+  },
+
+  {
+    route:
+      "26",
+    occupancy:
+      84
+  },
+
+  {
+    route:
+      "40",
+    occupancy:
+      67
+  },
+
+  {
+    route:
+      "40",
+    occupancy:
+      73
+  },
+
+  {
+    route:
+      "44",
+    occupancy:
+      55
+  },
+
+  {
+    route:
+      "44",
+    occupancy:
+      61
+  },
+
+  {
+    route:
+      "50",
+    occupancy:
+      79
+  },
+
+  {
+    route:
+      "50",
+    occupancy:
+      82
+  }
+
+];
+
+
+let occupancyChart =
+  null;
+
+
+function updateAnalytics() {
+
+
+  const data =
+    simulatedAnalyticsData;
+
+
+  const average =
+    Math.round(
+
+      data.reduce(
+        (
+          total,
+          item
+        ) =>
+        total +
+        item.occupancy,
+
+        0
+      ) /
+
+      data.length
+
+    );
+
+
+  const maximum =
+    Math.max(
+      ...data.map(
+        item =>
+        item.occupancy
+      )
+    );
+
+
+  const highDemand =
+    data.filter(
+      item =>
+      item.occupancy >=
+      75
+    )
+    .length;
+
+
+  const routeTotals =
+    {};
+
+
+  data.forEach(
+    item => {
+
+
+      if (
+        !routeTotals[
+          item.route
+        ]
+      ) {
+
+        routeTotals[
+          item.route
+        ] =
+        [];
+
+      }
+
+
+      routeTotals[
+        item.route
+      ]
+      .push(
+        item.occupancy
+      );
+
+    }
+  );
+
+
+  const routeAverages =
+    {};
+
+
+  Object.keys(
+    routeTotals
+  )
+  .forEach(
+    route => {
+
+
+      const values =
+        routeTotals[
+          route
+        ];
+
+
+      routeAverages[
+        route
+      ] =
+
+      values.reduce(
+        (
+          sum,
+          value
+        ) =>
+        sum + value,
+
+        0
+      ) /
+
+      values.length;
+
+    }
+  );
+
+
+  const busiestRoute =
+    Object.keys(
+      routeAverages
+    )
+    .reduce(
+      (
+        best,
+        route
+      ) =>
+
+      routeAverages[
+        route
+      ] >
+
+      routeAverages[
+        best
+      ]
+
+      ? route
+      : best
+
+    );
+
+
+  document
+  .getElementById(
+    "averageOccupancy"
+  )
+  .textContent =
+    average +
+    "%";
+
+
+  document
+  .getElementById(
+    "maximumOccupancy"
+  )
+  .textContent =
+    maximum +
+    "%";
+
+
+  document
+  .getElementById(
+    "highDemandTrips"
+  )
+  .textContent =
+    highDemand;
+
+
+  document
+  .getElementById(
+    "busiestRoute"
+  )
+  .textContent =
+    "Bus " +
+    busiestRoute;
+
+
+  document
+  .getElementById(
+    "findingOne"
+  )
+  .textContent =
+
+    `1. The average simulated occupancy is ${average}%.`;
+
+
+  document
+  .getElementById(
+    "findingTwo"
+  )
+  .textContent =
+
+    `2. Bus ${busiestRoute} has the highest average occupancy in the simulated dataset.`;
+
+
+  createChart(
+    routeAverages
+  );
+
+}
+
+
+function createChart(
+  routeAverages
+) {
+
+
+  const canvas =
+    document.getElementById(
+      "occupancyChart"
+    );
+
+
+  if (
+    occupancyChart
+  ) {
+
+    occupancyChart.destroy();
+
+  }
+
+
+  occupancyChart =
+    new Chart(
+      canvas,
+      {
+
+        type:
+          "bar",
+
+        data: {
+
+          labels:
+            Object.keys(
+              routeAverages
+            )
+            .map(
+              route =>
+              "Bus " + route
+            ),
+
+          datasets: [
+
+            {
+
+              label:
+                "Average Occupancy %",
+
+              data:
+                Object.values(
+                  routeAverages
+                )
+
+            }
+
+          ]
+
+        },
+
+        options: {
+
+          responsive:
+            true,
+
+          plugins: {
+
+            title: {
+
+              display:
+                true,
+
+              text:
+                "Average Occupancy by Route"
+
+            }
+
+          },
+
+          scales: {
+
+            y: {
+
+              beginAtZero:
+                true,
+
+              max:
+                100,
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  "Occupancy %"
+
+              }
+
+            },
+
+            x: {
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  "Bus Route"
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+document
+.getElementById(
+  "searchStopButton"
+)
+.addEventListener(
+  "click",
+  function () {
+
+
+    const text =
+      stopSearch.value
+      .toLowerCase()
+      .trim();
+
+
+    const route =
+      routes[
+        routeSelect.value
+      ];
+
+
+    const index =
+      route.stops.findIndex(
+        stop =>
+        stop.name
+        .toLowerCase()
+        .includes(
+          text
         )
       );
 
 
-    const passengers =
-      Math.round(
-        route.capacity *
-        occupancy /
-        100
-      );
-
-
-    updatePredictionUI(
-      occupancy,
-      passengers,
-      route,
-      routeNumber,
-      hour
-    );
-
-
-    renderStopButtons();
-
-
-    focusSelectedStop();
-
-  }
-
-
-  function updatePredictionUI(
-    occupancy,
-    passengers,
-    route,
-    routeNumber,
-    hour
-  ) {
-
-
-    document
-    .getElementById(
-      "percent"
-    )
-    .textContent =
-      occupancy + "%";
-
-
-    document
-    .getElementById(
-      "passengers"
-    )
-    .textContent =
-      passengers;
-
-
-    document
-    .getElementById(
-      "capacity"
-    )
-    .textContent =
-      route.capacity;
-
-
-    document
-    .getElementById(
-      "heroPercent"
-    )
-    .textContent =
-      occupancy + "%";
-
-
-    document
-    .getElementById(
-      "heroRoute"
-    )
-    .textContent =
-      "Bus " +
-      routeNumber;
-
-
-    const status =
-      document.getElementById(
-        "status"
-      );
-
-
-    const progressBar =
-      document.getElementById(
-        "progressBar"
-      );
-
-
-    let nextBus =
-      8;
-
-
     if (
-      occupancy < 45
-    ) {
-
-      status.textContent =
-        "Low";
-
-
-      status.className =
-        "status low";
-
-
-      progressBar.style.background =
-        "#22c55e";
-
-
-      document
-      .getElementById(
-        "heroStatus"
-      )
-      .textContent =
-        "Low occupancy";
-
-
-      document
-      .getElementById(
-        "recommendation"
-      )
-      .textContent =
-        "Take this bus.";
-
-
-      document
-      .getElementById(
-        "recommendationDetail"
-      )
-      .textContent =
-        "The bus is expected to have enough free space.";
-
-    }
-
-
-    else if (
-      occupancy < 75
-    ) {
-
-      status.textContent =
-        "Medium";
-
-
-      status.className =
-        "status medium";
-
-
-      progressBar.style.background =
-        "#f59e0b";
-
-
-      document
-      .getElementById(
-        "heroStatus"
-      )
-      .textContent =
-        "Medium occupancy";
-
-
-      document
-      .getElementById(
-        "recommendation"
-      )
-      .textContent =
-        "You can take this bus.";
-
-
-      document
-      .getElementById(
-        "recommendationDetail"
-      )
-      .textContent =
-        "The bus may be moderately crowded.";
-
-    }
-
-
-    else {
-
-      status.textContent =
-        "High";
-
-
-      status.className =
-        "status high";
-
-
-      progressBar.style.background =
-        "#ef4444";
-
-
-      document
-      .getElementById(
-        "heroStatus"
-      )
-      .textContent =
-        "High occupancy";
-
-
-      document
-      .getElementById(
-        "recommendation"
-      )
-      .textContent =
-        "Wait for the next bus if possible.";
-
-
-      document
-      .getElementById(
-        "recommendationDetail"
-      )
-      .textContent =
-        "The next bus may be less crowded.";
-
-
-      nextBus =
-        6;
-
-    }
-
-
-    progressBar.style.width =
-      occupancy + "%";
-
-
-    document
-    .getElementById(
-      "heroNext"
-    )
-    .textContent =
-      nextBus + " min";
-
-
-    let context =
-      "Normal traffic period.";
-
-
-    if (
-      hour >= 7 &&
-      hour < 9
-    ) {
-
-      context =
-        "Morning peak increases passenger demand.";
-
-    }
-
-
-    else if (
-      hour >= 17 &&
-      hour < 20
-    ) {
-
-      context =
-        "Evening peak increases passenger demand.";
-
-    }
-
-
-    else if (
-      hour >= 21 ||
-      hour < 6
-    ) {
-
-      context =
-        "Passenger demand is usually lower at this time.";
-
-    }
-
-
-    document
-    .getElementById(
-      "contextText"
-    )
-    .textContent =
-      context;
-
-  }
-
-
-  /* =========================
-     SEARCH
-  ========================= */
-
-  function searchStop() {
-
-    const route =
-      routes[
-        routeSelect.value
-      ];
-
-
-    const searchText =
-      stopSearch.value
-      .toLowerCase()
-      .trim();
-
-
-    if (
-      searchText === ""
-    ) {
-
-      renderStopButtons();
-
-      return;
-
-    }
-
-
-    const foundIndex =
-      route.stops.findIndex(
-        function (stop) {
-
-
-          return stop.name
-          .toLowerCase()
-          .includes(
-            searchText
-          );
-
-
-        }
-      );
-
-
-    if (
-      foundIndex === -1
+      index === -1
     ) {
 
       searchMessage.textContent =
-        "Stop not found on this route.";
+        "Stop not found.";
 
       return;
 
     }
 
 
-    searchMessage.textContent =
-      "";
-
-
     stopSelect.value =
-      foundIndex;
+      index;
 
 
     calculatePrediction();
 
   }
+);
 
 
-  /* =========================
-     EVENTS
-  ========================= */
+stopSearch.addEventListener(
+  "input",
+  renderStopButtons
+);
 
 
-  routeSelect.addEventListener(
-    "change",
-    loadStops
-  );
+/* =========================================
+   EVENT LISTENERS
+========================================= */
+
+routeSelect.addEventListener(
+  "change",
+  loadStops
+);
 
 
-  stopSelect.addEventListener(
-    "change",
-    calculatePrediction
-  );
+stopSelect.addEventListener(
+  "change",
+  calculatePrediction
+);
 
 
-  timeInput.addEventListener(
-    "change",
-    calculatePrediction
-  );
+timeInput.addEventListener(
+  "change",
+  calculatePrediction
+);
 
 
-  predictButton.addEventListener(
-    "click",
-    calculatePrediction
-  );
+document
+.getElementById(
+  "predictButton"
+)
+.addEventListener(
+  "click",
+  calculatePrediction
+);
 
 
-  stopSearch.addEventListener(
-    "input",
-    renderStopButtons
-  );
+/* =========================================
+   START
+========================================= */
 
+updateAuthUI();
 
-  searchButton.addEventListener(
-    "click",
-    searchStop
-  );
+initializeMap();
 
+loadStops();
 
-  stopSearch.addEventListener(
-    "keydown",
-    function (event) {
-
-
-      if (
-        event.key === "Enter"
-      ) {
-
-        searchStop();
-
-      }
-
-
-    }
-  );
-
-
-  /* =========================
-     START WEBSITE
-  ========================= */
-
-
-  /*
-    IMPORTANT:
-    STOP LIST LOADS FIRST.
-
-    This means that even if the map
-    fails, stops will still appear.
-  */
-
-  loadStops();
-
-
-  /*
-    Map initializes separately.
-  */
-
-  initializeMap();
-
-
-  /*
-    Draw map only after map exists.
-  */
-
-  drawRouteOnMap();
+updateAnalytics();
 
 
 });
