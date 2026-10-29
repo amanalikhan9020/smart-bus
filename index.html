@@ -1,265 +1,936 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>SmartBus Astana</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
+  <!-- Leaflet Map -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   >
+
 </head>
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
-  <div class="logo-box">SB</div>
 
-  <div>
-    <h2>SmartBus Astana</h2>
-    <p>AI Bus Occupancy Prediction</p>
-  </div>
-</header>
+  <div class="brand">
 
-
-<section class="hero">
-
-  <div class="hero-left">
-
-    <div class="badge">
-      Astana • Public Transport • AI Prediction
+    <div class="logo">
+      SB
     </div>
 
-    <h1>
-      Know how crowded your bus will be.
-    </h1>
+    <div>
 
-    <p>
-      SmartBus predicts expected bus occupancy using
-      route, stop and time of day.
-    </p>
+      <h2>
+        SmartBus Astana
+      </h2>
 
-  </div>
-
-
-  <div class="hero-card">
-
-    <p>Current prediction</p>
-
-    <h2 id="heroPercent">--%</h2>
-
-    <h3 id="heroStatus">
-      Select your trip
-    </h3>
-
-    <div class="hero-bottom">
-
-      <div>
-        <span>Route</span>
-        <strong id="heroRoute">Bus 10</strong>
-      </div>
-
-      <div>
-        <span>Next bus</span>
-        <strong id="heroNext">8 min</strong>
-      </div>
+      <p>
+        Smart Public Transport
+      </p>
 
     </div>
 
   </div>
 
-</section>
+
+  <nav>
+
+    <button
+      class="nav-button"
+      onclick="showSection('home')"
+    >
+      Home
+    </button>
+
+    <button
+      class="nav-button"
+      onclick="showSection('analytics')"
+    >
+      Analytics
+    </button>
+
+    <button
+      class="nav-button"
+      onclick="showSection('saved')"
+    >
+      Saved Trips
+    </button>
+
+  </nav>
 
 
-<main>
+  <div
+    id="authButtons"
+    class="auth-buttons"
+  >
 
-<section class="card">
+    <button
+      class="secondary-button"
+      onclick="openLogin()"
+    >
+      Login
+    </button>
 
-  <h2>Trip Prediction</h2>
-
-  <p class="muted">
-    Select your route, stop and departure time.
-  </p>
-
-
-  <div class="controls">
-
-    <div>
-      <label>Route</label>
-
-      <select id="route">
-        <option value="10">Bus 10</option>
-        <option value="21">Bus 21</option>
-        <option value="26">Bus 26</option>
-        <option value="40">Bus 40</option>
-        <option value="44">Bus 44</option>
-        <option value="50">Bus 50</option>
-      </select>
-    </div>
-
-
-    <div>
-      <label>Stop</label>
-
-      <select id="stop"></select>
-    </div>
-
-
-    <div>
-      <label>Time</label>
-
-      <input
-        id="time"
-        type="time"
-        value="18:00"
-      >
-    </div>
-
-
-    <button id="predictButton">
-      Predict Occupancy
+    <button
+      class="primary-button"
+      onclick="openRegister()"
+    >
+      Register
     </button>
 
   </div>
 
 
-  <div class="dashboard">
+  <div
+    id="userArea"
+    class="user-area hidden"
+  >
+
+    <span id="welcomeUser">
+      Hello
+    </span>
+
+    <button
+      class="secondary-button"
+      onclick="showProfile()"
+    >
+      Profile
+    </button>
+
+    <button
+      class="danger-button"
+      onclick="logout()"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================
+     HOME SECTION
+========================= -->
+
+<section
+  id="home"
+  class="page-section"
+>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
 
     <div>
 
-      <div class="stats">
+      <div class="badge">
+        Astana • Smart Transport • Occupancy Prediction
+      </div>
 
-        <div class="stat-card">
-          <p>Predicted occupancy</p>
-          <h2 id="percent">--%</h2>
+      <h1>
+        Know how crowded your bus will be.
+      </h1>
+
+      <p>
+        SmartBus estimates bus occupancy using
+        route, stop and time of day and gives
+        passengers a useful recommendation.
+      </p>
+
+      <button
+        id="guestButton"
+        class="secondary-button guest-button"
+        onclick="continueAsGuest()"
+      >
+        Continue as Guest
+      </button>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <p>
+        Current prediction
+      </p>
+
+      <h2 id="heroPercent">
+        --%
+      </h2>
+
+      <h3 id="heroStatus">
+        Select your trip
+      </h3>
+
+
+      <div class="hero-details">
+
+        <div>
+
+          <span>
+            Route
+          </span>
+
+          <strong id="heroRoute">
+            Bus 10
+          </strong>
+
         </div>
 
-        <div class="stat-card">
-          <p>Passengers</p>
-          <h2 id="passengers">--</h2>
+
+        <div>
+
+          <span>
+            Next bus
+          </span>
+
+          <strong id="heroNext">
+            8 min
+          </strong>
+
         </div>
 
-        <div class="stat-card">
-          <p>Bus capacity</p>
-          <h2 id="capacity">--</h2>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- TRIP PREDICTION -->
+
+  <section class="card">
+
+    <div class="section-header">
+
+      <div>
+
+        <h2>
+          Trip Prediction
+        </h2>
+
+        <p class="muted">
+          Select route, stop and time.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="trip-controls">
+
+
+      <div>
+
+        <label>
+          Route
+        </label>
+
+        <select id="routeSelect">
+
+          <option value="10">
+            Bus 10
+          </option>
+
+          <option value="21">
+            Bus 21
+          </option>
+
+          <option value="26">
+            Bus 26
+          </option>
+
+          <option value="40">
+            Bus 40
+          </option>
+
+          <option value="44">
+            Bus 44
+          </option>
+
+          <option value="50">
+            Bus 50
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Stop
+        </label>
+
+        <select id="stopSelect">
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Time
+        </label>
+
+        <input
+          id="timeInput"
+          type="time"
+          value="18:00"
+        >
+
+      </div>
+
+
+      <button
+        id="predictButton"
+        class="primary-button predict-button"
+      >
+        Predict Occupancy
+      </button>
+
+    </div>
+
+
+
+    <!-- RESULTS -->
+
+    <div class="dashboard-grid">
+
+
+      <div>
+
+
+        <div class="stats-grid">
+
+
+          <div class="stat-card">
+
+            <p>
+              Occupancy
+            </p>
+
+            <h2 id="occupancyValue">
+              --%
+            </h2>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <p>
+              Passengers
+            </p>
+
+            <h2 id="passengerValue">
+              --
+            </h2>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <p>
+              Capacity
+            </p>
+
+            <h2 id="capacityValue">
+              --
+            </h2>
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="prediction-result">
+
+          <p>
+            Occupancy level
+          </p>
+
+          <span
+            id="occupancyStatus"
+            class="status medium"
+          >
+            Medium
+          </span>
+
+
+          <div class="progress">
+
+            <div id="progressBar">
+            </div>
+
+          </div>
+
+
+          <p
+            id="demandMessage"
+            class="muted"
+          >
+            Select your trip.
+          </p>
+
+
+
+          <div class="recommendation-box">
+
+            <p>
+              Smart Recommendation
+            </p>
+
+            <h3 id="recommendationText">
+              Select a trip first.
+            </h3>
+
+            <p
+              id="recommendationDescription"
+              class="muted"
+            >
+              The system will suggest the best action.
+            </p>
+
+          </div>
+
+
+          <button
+            id="saveTripButton"
+            class="save-button"
+          >
+            Save Trip
+          </button>
+
         </div>
 
       </div>
 
 
-      <div class="occupancy-card">
 
-        <p>Occupancy level</p>
+      <!-- STOPS -->
 
-        <span
-          id="status"
-          class="status medium"
-        >
-          Medium
-        </span>
+      <div class="stops-panel">
+
+        <h2>
+          Route Stops
+        </h2>
 
 
-        <div class="progress">
+        <div class="search-row">
 
-          <div id="progressBar"></div>
+          <input
+            id="stopSearch"
+            type="text"
+            placeholder="Search stop..."
+          >
+
+          <button
+            id="searchStopButton"
+            class="dark-button"
+          >
+            Search
+          </button>
 
         </div>
 
 
         <p
-          id="contextText"
-          class="muted"
+          id="searchMessage"
+          class="error-text"
         >
-          Select a trip to see the prediction.
         </p>
 
 
-        <div class="recommendation">
-
-          <p>Recommendation</p>
-
-          <h3 id="recommendation">
-            Select your trip.
-          </h3>
-
-          <p
-            id="recommendationDetail"
-            class="muted"
-          >
-            SmartBus will recommend whether to take this bus.
-          </p>
-
+        <div
+          id="stopButtons"
+          class="stop-list"
+        >
         </div>
 
       </div>
 
+
     </div>
 
-
-    <div class="route-panel">
-
-      <h2>Route Stops</h2>
+  </section>
 
 
-      <div class="search-row">
 
-        <input
-          id="stopSearch"
-          type="text"
-          placeholder="Search stop..."
-        >
+  <!-- MAP -->
 
-        <button id="searchButton">
-          Search
-        </button>
+  <section class="card map-card">
+
+    <h2>
+      Route Map
+    </h2>
+
+    <p class="muted">
+      Select a stop to focus the map.
+    </p>
+
+    <div id="map">
+    </div>
+
+  </section>
+
+
+</section>
+
+
+
+<!-- =========================
+     ANALYTICS SECTION
+========================= -->
+
+<section
+  id="analytics"
+  class="page-section hidden"
+>
+
+  <section class="card">
+
+    <h1>
+      SmartBus Analytics
+    </h1>
+
+    <p class="muted">
+      Analysis based on simulated SmartBus trip data.
+    </p>
+
+
+    <div class="analytics-grid">
+
+
+      <div class="analytics-card">
+
+        <p>
+          Average Occupancy
+        </p>
+
+        <h2 id="averageOccupancy">
+          0%
+        </h2>
 
       </div>
 
 
-      <div id="searchMessage"></div>
+      <div class="analytics-card">
+
+        <p>
+          Maximum Occupancy
+        </p>
+
+        <h2 id="maximumOccupancy">
+          0%
+        </h2>
+
+      </div>
 
 
-      <div
-        id="routeStops"
-        class="stop-list"
-      ></div>
+      <div class="analytics-card">
+
+        <p>
+          High-Demand Trips
+        </p>
+
+        <h2 id="highDemandTrips">
+          0
+        </h2>
+
+      </div>
+
+
+      <div class="analytics-card">
+
+        <p>
+          Busiest Route
+        </p>
+
+        <h2 id="busiestRoute">
+          --
+        </h2>
+
+      </div>
+
 
     </div>
 
+
+    <div class="chart-container">
+
+      <canvas id="occupancyChart">
+      </canvas>
+
+    </div>
+
+
+    <div class="findings">
+
+      <h2>
+        Findings
+      </h2>
+
+      <p id="findingOne">
+      </p>
+
+      <p id="findingTwo">
+      </p>
+
+
+      <h3>
+        Possible Decision
+      </h3>
+
+      <p>
+        Transport operators could increase bus frequency
+        during periods and routes with consistently high demand.
+      </p>
+
+    </div>
+
+  </section>
+
+</section>
+
+
+
+<!-- =========================
+     SAVED TRIPS SECTION
+========================= -->
+
+<section
+  id="saved"
+  class="page-section hidden"
+>
+
+  <section class="card">
+
+    <h1>
+      Saved Trips
+    </h1>
+
+    <p class="muted">
+      Trips saved by the current user.
+    </p>
+
+
+    <div class="saved-controls">
+
+      <select id="savedRouteFilter">
+
+        <option value="all">
+          All routes
+        </option>
+
+        <option value="10">
+          Bus 10
+        </option>
+
+        <option value="21">
+          Bus 21
+        </option>
+
+        <option value="26">
+          Bus 26
+        </option>
+
+        <option value="40">
+          Bus 40
+        </option>
+
+        <option value="44">
+          Bus 44
+        </option>
+
+        <option value="50">
+          Bus 50
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div id="savedTripsContainer">
+    </div>
+
+  </section>
+
+</section>
+
+
+
+<!-- =========================
+     PROFILE SECTION
+========================= -->
+
+<section
+  id="profile"
+  class="page-section hidden"
+>
+
+  <section class="card profile-card">
+
+    <h1>
+      My Profile
+    </h1>
+
+    <div class="profile-row">
+
+      <strong>
+        Name:
+      </strong>
+
+      <span id="profileName">
+      </span>
+
+    </div>
+
+
+    <div class="profile-row">
+
+      <strong>
+        Email:
+      </strong>
+
+      <span id="profileEmail">
+      </span>
+
+    </div>
+
+
+    <div class="profile-row">
+
+      <strong>
+        Account type:
+      </strong>
+
+      <span id="profileType">
+      </span>
+
+    </div>
+
+  </section>
+
+</section>
+
+
+
+<!-- =========================
+     REGISTER MODAL
+========================= -->
+
+<div
+  id="registerModal"
+  class="modal hidden"
+>
+
+  <div class="modal-content">
+
+    <button
+      class="close-button"
+      onclick="closeRegister()"
+    >
+      ×
+    </button>
+
+
+    <h2>
+      Create Account
+    </h2>
+
+
+    <label>
+      Full Name
+    </label>
+
+    <input
+      id="registerName"
+      type="text"
+      placeholder="Your full name"
+    >
+
+
+    <label>
+      Email
+    </label>
+
+    <input
+      id="registerEmail"
+      type="email"
+      placeholder="name@example.com"
+    >
+
+
+    <label>
+      Password
+    </label>
+
+    <input
+      id="registerPassword"
+      type="password"
+      placeholder="Minimum 6 characters"
+    >
+
+
+    <label>
+      Confirm Password
+    </label>
+
+    <input
+      id="registerConfirm"
+      type="password"
+      placeholder="Repeat password"
+    >
+
+
+    <p
+      id="registerError"
+      class="error-text"
+    >
+    </p>
+
+
+    <button
+      id="createAccountButton"
+      class="primary-button full-button"
+    >
+      Create Account
+    </button>
+
   </div>
 
-</section>
+</div>
 
 
-<section class="card map-card">
 
-  <h2>Route Map</h2>
+<!-- =========================
+     LOGIN MODAL
+========================= -->
 
-  <p class="muted">
-    Click a stop or map marker to select it.
-  </p>
+<div
+  id="loginModal"
+  class="modal hidden"
+>
 
-  <div id="map"></div>
+  <div class="modal-content">
 
-</section>
+    <button
+      class="close-button"
+      onclick="closeLogin()"
+    >
+      ×
+    </button>
 
-</main>
+
+    <h2>
+      Login
+    </h2>
+
+
+    <label>
+      Email
+    </label>
+
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="name@example.com"
+    >
+
+
+    <label>
+      Password
+    </label>
+
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Password"
+    >
+
+
+    <p
+      id="loginError"
+      class="error-text"
+    >
+    </p>
+
+
+    <button
+      id="loginButton"
+      class="primary-button full-button"
+    >
+      Login
+    </button>
+
+  </div>
+
+</div>
+
 
 
 <footer>
-  SmartBus Astana • ICT / IoT Project
+
+  SmartBus Astana • University Project
+
+  <br>
+
+  Simulated occupancy data used for educational purposes.
+
 </footer>
 
 
+
+<!-- LIBRARIES -->
+
 <script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+>
 </script>
 
-<script src="script.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/chart.js"
+>
+</script>
+
+<script src="script.js">
+</script>
+
 
 </body>
+
 </html>
